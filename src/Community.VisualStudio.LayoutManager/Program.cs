@@ -128,11 +128,11 @@ namespace Community.VisualStudio.LayoutManager
 
                 var assemblyFile = Path.GetFileName(assembly.Location);
 
-                Console.WriteLine($"Usage: dotnet {assemblyFile} --layout-path <value> --command <command>");
+                Console.WriteLine($"Usage: dotnet {assemblyFile} --layout-path <value> --command <value>");
                 Console.WriteLine();
                 Console.WriteLine("Available commands:");
-                Console.WriteLine("   list-obsolete");
-                Console.WriteLine("   remove-obsolete");
+                Console.WriteLine("    list-obsolete      List obsolete packages which are not included in the catalog");
+                Console.WriteLine("    remove-obsolete    Remove obsolete packages which are not included in the catalog");
 
                 Environment.Exit(1);
             }
