@@ -5,7 +5,7 @@ Provides additional abilities for managing installation layout of Visual Studio 
 ### Run instructions:
 
 ```
-dotnet vslm.dll --layou-path <layout-path> -command <command>
+dotnet vslm.dll --layout-path <layout-path> --command <command>
 ```
 
 ### Available commands:
