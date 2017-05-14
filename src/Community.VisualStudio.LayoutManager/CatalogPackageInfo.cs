@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace Community.VisualStudio.LayoutManager
 {
@@ -10,7 +11,21 @@ namespace Community.VisualStudio.LayoutManager
         {
         }
 
-        public override string ToString() => Chip != null ? $"{ID},version={Version},chip={Chip}" : $"{ID},version={Version}";
+        public override string ToString()
+        {
+            var builder = new StringBuilder($"{ID},version={Version}");
+
+            if (Chip != null)
+            {
+                builder.Append($",chip={Chip}");
+            }
+            if (Language != null)
+            {
+                builder.Append($",language={Language}");
+            }
+
+            return builder.ToString();
+        }
 
         /// <summary>Gets or set identifier.</summary>
         [JsonProperty("id")]
@@ -23,5 +38,9 @@ namespace Community.VisualStudio.LayoutManager
         /// <summary>Gets or set chip identifier.</summary>
         [JsonProperty("chip")]
         public string Chip { get; set; }
+
+        /// <summary>Gets or set language identifier.</summary>
+        [JsonProperty("language")]
+        public string Language { get; set; }
     }
 }

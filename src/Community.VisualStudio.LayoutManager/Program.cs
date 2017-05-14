@@ -61,7 +61,7 @@ namespace Community.VisualStudio.LayoutManager
                 Console.WriteLine();
 
                 var layoutPackages = new List<CatalogPackageInfo>();
-                var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?$", RegexOptions.Compiled);
+                var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled);
 
                 foreach (var directoryPath in Directory.GetDirectories(layoutPath))
                 {
@@ -76,7 +76,8 @@ namespace Community.VisualStudio.LayoutManager
                     {
                         ID = match.Groups["id"].Value,
                         Version = match.Groups["version"].Value,
-                        Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null
+                        Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
+                        Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
                     };
 
                     layoutPackages.Add(package);

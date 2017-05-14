@@ -15,12 +15,17 @@ namespace Community.VisualStudio.LayoutManager
             return
                 (x.ID == y.ID) &&
                 (x.Version == y.Version) &&
-                (x.Chip == y.Chip);
+                (x.Chip == y.Chip) &&
+                (x.Language == y.Language);
         }
 
         int IEqualityComparer<CatalogPackageInfo>.GetHashCode(CatalogPackageInfo obj)
         {
-            return obj.ID.GetHashCode() ^ obj.Version.GetHashCode() ^ (obj.Chip ?? string.Empty).GetHashCode();
+            return
+                obj.ID.GetHashCode() ^
+                obj.Version.GetHashCode() ^
+                (obj.Chip ?? string.Empty).GetHashCode() ^
+                (obj.Language ?? string.Empty).GetHashCode();
         }
     }
 }
