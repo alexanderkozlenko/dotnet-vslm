@@ -124,6 +124,8 @@ namespace Community.VisualStudio.LayoutManager
             }
             catch (Exception ex)
             {
+                Environment.ExitCode = 1;
+
                 Console.WriteLine($"ERROR: {ex.Message}");
                 Console.WriteLine();
 
@@ -134,8 +136,6 @@ namespace Community.VisualStudio.LayoutManager
                 Console.WriteLine("Available commands:");
                 Console.WriteLine("    list-obsolete      List obsolete packages which are not included in the catalog");
                 Console.WriteLine("    remove-obsolete    Remove obsolete packages which are not included in the catalog");
-
-                Environment.Exit(1);
             }
         }
     }
