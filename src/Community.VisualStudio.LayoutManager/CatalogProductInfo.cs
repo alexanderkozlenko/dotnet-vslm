@@ -12,6 +12,10 @@ namespace Community.VisualStudio.LayoutManager
 
         /// <summary>Gets or set product display version.</summary>
         [JsonProperty("productDisplayVersion")]
-        public string ProductDisplayVersion { get; set; }
+        public string ProductDisplayVersion
+        {
+            get;
+            set;
+        }
     }
 }

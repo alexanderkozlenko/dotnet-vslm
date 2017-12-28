@@ -10,11 +10,11 @@ using Newtonsoft.Json;
 
 namespace Community.VisualStudio.LayoutManager
 {
-    internal static class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            var assembly = typeof(Program).GetTypeInfo().Assembly;
+            var assembly = typeof(Program).Assembly;
 
             Console.WriteLine($"{assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {assembly.GetName().Version}");
             Console.WriteLine();

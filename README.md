@@ -1,8 +1,8 @@
 ## Visual Studio 2017 Installation Layout Manager
 
-Provides additional abilities for managing installation layout of Visual Studio 2017
+Provides an ability to display and remove obsolete packages from the Visual Studio 2017 installation layout. Each package which is not listed in the current catalog file (Catalog.json) is considered as absolete.
 
-### Run instructions:
+### Run instruction:
 
 ```
 dotnet vslm.dll --layout-path <value> --command <value>
@@ -12,7 +12,7 @@ dotnet vslm.dll --layout-path <value> --command <value>
 
 Command | Purpose
 --- | ---
-`list-obsolete` | List obsolete packages which are not included in the catalog
-`remove-obsolete` | Remove obsolete packages which are not included in the catalog
+`list-obsolete` | List obsolete packages
+`remove-obsolete` | Remove obsolete packages
 
 [![Latest release](https://img.shields.io/github/release/alexanderkozlenko/vs-layout-manager.svg?style=flat-square)](https://github.com/alexanderkozlenko/vs-layout-manager/releases)

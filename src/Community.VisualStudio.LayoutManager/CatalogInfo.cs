@@ -12,10 +12,18 @@ namespace Community.VisualStudio.LayoutManager
 
         /// <summary>Gets or set product information.</summary>
         [JsonProperty("info")]
-        public CatalogProductInfo Product { get; set; }
+        public CatalogProductInfo Product
+        {
+            get;
+            set;
+        }
 
         /// <summary>Gets or set packages.</summary>
         [JsonProperty("packages")]
-        public CatalogPackageInfo[] Packages { get; set; }
+        public CatalogPackageInfo[] Packages
+        {
+            get;
+            set;
+        }
     }
 }
