@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.3.0</Version>
-    <Product>Visual Studio 2017 Installation Layout Manager</Product>
+    <Version>1.0.4</Version>
+    <Product><![CDATA[VS2017 Setup Layout Manager]]></Product>
     <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>
   </PropertyGroup>
   <PropertyGroup>

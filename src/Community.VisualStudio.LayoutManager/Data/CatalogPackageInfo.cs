@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 
-namespace Community.VisualStudio.LayoutManager
+namespace Community.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents catalog package information.</summary>
     internal sealed class CatalogPackageInfo

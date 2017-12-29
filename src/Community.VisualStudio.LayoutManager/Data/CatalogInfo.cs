@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Community.VisualStudio.LayoutManager
+namespace Community.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents catalog information.</summary>
     internal sealed class CatalogInfo

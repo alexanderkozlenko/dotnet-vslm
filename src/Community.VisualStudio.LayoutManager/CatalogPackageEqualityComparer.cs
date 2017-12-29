@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Community.VisualStudio.LayoutManager.Data;
 
 namespace Community.VisualStudio.LayoutManager
 {

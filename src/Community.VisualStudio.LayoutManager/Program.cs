@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using Community.VisualStudio.LayoutManager.Data;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -16,7 +17,7 @@ namespace Community.VisualStudio.LayoutManager
         {
             var assembly = typeof(Program).Assembly;
 
-            Console.WriteLine($"{assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {assembly.GetName().Version}");
+            Console.WriteLine($"{assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {assembly.GetName().Version.ToString(3)}");
             Console.WriteLine();
 
             var configurationBuilder = new ConfigurationBuilder()
@@ -26,20 +27,14 @@ namespace Community.VisualStudio.LayoutManager
             {
                 var configuration = configurationBuilder.Build();
 
-                var layoutPath = configuration["layout-path"];
+                var layoutPath = configuration["layout"];
 
                 if (layoutPath == null)
                 {
                     throw new InvalidOperationException("Layout path is not specified");
                 }
 
-                var command = configuration["command"];
-
-                if (command == null)
-                {
-                    throw new InvalidOperationException("Command is not specified");
-                }
-
+                var command = configuration["command"] ?? "reveal";
                 var catalogPath = Path.Combine(layoutPath, "Catalog.json");
 
                 if (!File.Exists(catalogPath))
@@ -57,8 +52,7 @@ namespace Community.VisualStudio.LayoutManager
                     }
                 }
 
-                Console.WriteLine($"Found layout for Visual Studio {catalog.Product.ProductDisplayVersion}");
-                Console.WriteLine();
+                Console.WriteLine($"Layout version: {catalog.Product.ProductDisplayVersion}");
 
                 var layoutPackages = new List<CatalogPackageInfo>();
                 var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled);
@@ -88,14 +82,16 @@ namespace Community.VisualStudio.LayoutManager
                     .ThenBy(x => x.Version)
                     .ToArray();
 
-                if (obsoletePackages.Length == 0)
+                Console.WriteLine($"Obsolete packages count: {obsoletePackages.Length}");
+
+                if (obsoletePackages.Length > 0)
                 {
-                    Console.WriteLine("There are no obsolete packages");
+                    Console.WriteLine();
                 }
 
                 switch (command)
                 {
-                    case "list-obsolete":
+                    case "reveal":
                         {
                             foreach (var package in obsoletePackages)
                             {
@@ -103,11 +99,11 @@ namespace Community.VisualStudio.LayoutManager
                             }
                         }
                         break;
-                    case "remove-obsolete":
+                    case "clean":
                         {
                             foreach (var package in obsoletePackages)
                             {
-                                Console.WriteLine($"Removing {package}...");
+                                Console.WriteLine($"Removing package {package}...");
 
                                 var directoryPath = Path.Combine(layoutPath, package.ToString());
 
@@ -119,7 +115,7 @@ namespace Community.VisualStudio.LayoutManager
                         }
                         break;
                     default:
-                        throw new InvalidOperationException("Invalid command");
+                        throw new InvalidOperationException($"The specified command \"{command}\" is invalid");
                 }
             }
             catch (Exception ex)
@@ -131,11 +127,12 @@ namespace Community.VisualStudio.LayoutManager
 
                 var assemblyFile = Path.GetFileName(assembly.Location);
 
-                Console.WriteLine($"Usage: dotnet {assemblyFile} --layout-path <value> --command <value>");
+                Console.WriteLine($"Usage: dotnet {assemblyFile} --layout <value> [--command <value>]");
                 Console.WriteLine();
-                Console.WriteLine("Available commands:");
-                Console.WriteLine("    list-obsolete      List obsolete packages which are not included in the catalog");
-                Console.WriteLine("    remove-obsolete    Remove obsolete packages which are not included in the catalog");
+                Console.WriteLine("Supported commands:");
+                Console.WriteLine();
+                Console.WriteLine("    reveal   List obsolete packages (default command)");
+                Console.WriteLine("    clean    Remove obsolete packages");
             }
         }
     }
