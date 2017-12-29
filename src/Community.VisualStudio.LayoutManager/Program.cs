@@ -20,8 +20,7 @@ namespace Community.VisualStudio.LayoutManager
             Console.WriteLine($"{assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {assembly.GetName().Version.ToString(3)}");
             Console.WriteLine();
 
-            var configurationBuilder = new ConfigurationBuilder()
-                .AddCommandLine(args);
+            var configurationBuilder = new ConfigurationBuilder().AddCommandLine(args);
 
             try
             {
@@ -35,16 +34,9 @@ namespace Community.VisualStudio.LayoutManager
                 }
 
                 var command = configuration["command"] ?? "reveal";
-                var catalogPath = Path.Combine(layoutPath, "Catalog.json");
-
-                if (!File.Exists(catalogPath))
-                {
-                    throw new InvalidOperationException("Catalog is not found");
-                }
-
                 var catalog = default(CatalogInfo);
 
-                using (var stream = new FileStream(catalogPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     using (var reader = new StreamReader(stream, Encoding.UTF8))
                     {
@@ -61,20 +53,18 @@ namespace Community.VisualStudio.LayoutManager
                 {
                     var match = packageNameRegex.Match(Path.GetFileName(directoryPath));
 
-                    if (!match.Success)
+                    if (match.Success)
                     {
-                        continue;
+                        var package = new CatalogPackageInfo
+                        {
+                            ID = match.Groups["id"].Value,
+                            Version = match.Groups["version"].Value,
+                            Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
+                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
+                        };
+
+                        layoutPackages.Add(package);
                     }
-
-                    var package = new CatalogPackageInfo
-                    {
-                        ID = match.Groups["id"].Value,
-                        Version = match.Groups["version"].Value,
-                        Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
-                        Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
-                    };
-
-                    layoutPackages.Add(package);
                 }
 
                 var obsoletePackages = layoutPackages.Except(catalog.Packages, new CatalogPackageEqualityComparer())
@@ -115,7 +105,9 @@ namespace Community.VisualStudio.LayoutManager
                         }
                         break;
                     default:
-                        throw new InvalidOperationException($"The specified command \"{command}\" is invalid");
+                        {
+                            throw new InvalidOperationException($"The specified command \"{command}\" is invalid");
+                        }
                 }
             }
             catch (Exception ex)
