@@ -58,5 +58,11 @@ namespace Community.VisualStudio.LayoutManager.Data
             get;
             set;
         }
+
+        public long Size
+        {
+            get;
+            set;
+        }
     }
 }

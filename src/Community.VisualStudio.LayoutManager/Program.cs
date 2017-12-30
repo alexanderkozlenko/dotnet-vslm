@@ -44,8 +44,6 @@ namespace Community.VisualStudio.LayoutManager
                     }
                 }
 
-                Console.WriteLine($"Layout version: {catalog.Product.ProductDisplayVersion}");
-
                 var layoutPackages = new List<CatalogPackageInfo>();
                 var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled);
 
@@ -60,7 +58,8 @@ namespace Community.VisualStudio.LayoutManager
                             ID = match.Groups["id"].Value,
                             Version = match.Groups["version"].Value,
                             Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
-                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
+                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null,
+                            Size = GetDirectorySize(directoryPath)
                         };
 
                         layoutPackages.Add(package);
@@ -72,28 +71,39 @@ namespace Community.VisualStudio.LayoutManager
                     .ThenBy(x => x.Version)
                     .ToArray();
 
-                Console.WriteLine($"Obsolete packages count: {obsoletePackages.Length}");
-
-                if (obsoletePackages.Length > 0)
-                {
-                    Console.WriteLine();
-                }
+                var totalSize = obsoletePackages
+                    .Select(x => x.Size)
+                    .DefaultIfEmpty(0L)
+                    .Sum();
 
                 switch (command)
                 {
                     case "reveal":
                         {
+                            Console.WriteLine($"Listing obsolete packages in layout \"{catalog.Product.ProductSemanticVersion}\"...");
+                            Console.WriteLine();
+
                             foreach (var package in obsoletePackages)
                             {
-                                Console.WriteLine(package);
+                                Console.WriteLine($"- {package} ({package.Size:#,0} bytes)");
                             }
+
+                            if (obsoletePackages.Length > 0)
+                            {
+                                Console.WriteLine();
+                            }
+
+                            Console.WriteLine($"Total: {obsoletePackages.Length} package(s) in {totalSize:#,0} bytes");
                         }
                         break;
                     case "clean":
                         {
+                            Console.WriteLine($"Removing obsolete packages from layout \"{catalog.Product.ProductSemanticVersion}\"...");
+                            Console.WriteLine();
+
                             foreach (var package in obsoletePackages)
                             {
-                                Console.WriteLine($"Removing package {package}...");
+                                Console.WriteLine($"- {package} ({package.Size:#,0} bytes)");
 
                                 var directoryPath = Path.Combine(layoutPath, package.ToString());
 
@@ -102,6 +112,13 @@ namespace Community.VisualStudio.LayoutManager
                                     Directory.Delete(directoryPath, true);
                                 }
                             }
+
+                            if (obsoletePackages.Length > 0)
+                            {
+                                Console.WriteLine();
+                            }
+
+                            Console.WriteLine($"Total: {obsoletePackages.Length} package(s) in {totalSize:#,0} bytes");
                         }
                         break;
                     default:
@@ -126,6 +143,27 @@ namespace Community.VisualStudio.LayoutManager
                 Console.WriteLine("    reveal   List obsolete packages (default command)");
                 Console.WriteLine("    clean    Remove obsolete packages");
             }
+        }
+
+        private static long GetDirectorySize(string directoryPath)
+        {
+            void GetDirectorySize(string parentName, ref long totalSize)
+            {
+                foreach (var directoryName in Directory.GetDirectories(parentName))
+                {
+                    GetDirectorySize(directoryName, ref totalSize);
+                }
+                foreach (var file in new DirectoryInfo(parentName).GetFiles())
+                {
+                    totalSize += file.Length;
+                }
+            }
+
+            var result = 0L;
+
+            GetDirectorySize(directoryPath, ref result);
+
+            return result;
         }
     }
 }

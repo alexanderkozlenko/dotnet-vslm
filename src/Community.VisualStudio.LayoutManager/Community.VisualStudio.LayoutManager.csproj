@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Product><![CDATA[VS2017 Setup Layout Manager]]></Product>
     <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>
   </PropertyGroup>
