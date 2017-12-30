@@ -29,22 +29,22 @@ namespace Community.VisualStudio.LayoutManager
 
                 if (layoutPath == null)
                 {
-                    throw new InvalidOperationException("Layout path is not specified");
+                    throw new InvalidOperationException("\"layout\" parameter is not specified");
                 }
 
                 var command = configuration["command"] ?? "reveal";
-                var catalog = default(CatalogInfo);
+                var catalogInfo = default(CatalogInfo);
 
                 using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     using (var reader = new StreamReader(stream, Encoding.UTF8))
                     {
-                        catalog = JsonConvert.DeserializeObject<CatalogInfo>(reader.ReadToEnd());
+                        catalogInfo = JsonConvert.DeserializeObject<CatalogInfo>(reader.ReadToEnd());
                     }
                 }
 
                 var layoutPackages = new List<CatalogPackageInfo>();
-                var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled);
+                var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
                 foreach (var directoryPath in Directory.GetDirectories(layoutPath))
                 {
@@ -57,72 +57,78 @@ namespace Community.VisualStudio.LayoutManager
                             ID = match.Groups["id"].Value,
                             Version = match.Groups["version"].Value,
                             Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
-                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null,
-                            Size = GetDirectorySize(directoryPath)
+                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
                         };
 
                         layoutPackages.Add(package);
                     }
                 }
 
-                var obsoletePackages = layoutPackages.Except(catalog.Packages, new CatalogPackageEqualityComparer())
+                var obsoletePackages = layoutPackages.Except(catalogInfo.Packages, CatalogPackageComparer.Default)
                     .OrderBy(x => x.ID)
                     .ThenBy(x => x.Version)
                     .ToArray();
-
-                var totalSize = obsoletePackages
-                    .Select(x => x.Size)
-                    .DefaultIfEmpty(0L)
-                    .Sum();
 
                 switch (command)
                 {
                     case "reveal":
                         {
-                            Console.WriteLine($"Listing obsolete packages in layout \"{catalog.Product.ProductSemanticVersion}\"...");
+                            Console.WriteLine($"Listing obsolete packages in layout \"{catalogInfo.Product.SemanticVersion}\"...");
                             Console.WriteLine();
+
+                            var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                Console.WriteLine($"- {package} ({package.Size:#,0} bytes)");
-                            }
+                                var packageName = GetPackageName(package);
+                                var packageLocation = Path.Combine(layoutPath, packageName);
+                                var packageSize = GetDirectorySize(packageLocation);
 
+                                totalSize += packageSize;
+
+                                Console.WriteLine($"- {packageName} ({packageSize:#,0} bytes)");
+                            }
                             if (obsoletePackages.Length > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine($"Total: {obsoletePackages.Length} package(s) in {totalSize:#,0} bytes");
+                            Console.WriteLine($"Total: {obsoletePackages.Length} obsolete package(s) in {totalSize:#,0} bytes");
                         }
                         break;
                     case "clean":
                         {
-                            Console.WriteLine($"Removing obsolete packages from layout \"{catalog.Product.ProductSemanticVersion}\"...");
+                            Console.WriteLine($"Removing obsolete packages from layout \"{catalogInfo.Product.SemanticVersion}\"...");
                             Console.WriteLine();
+
+                            var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                Console.WriteLine($"- {package} ({package.Size:#,0} bytes)");
+                                var packageName = GetPackageName(package);
+                                var packageLocation = Path.Combine(layoutPath, packageName);
+                                var packageSize = GetDirectorySize(packageLocation);
 
-                                var directoryPath = Path.Combine(layoutPath, package.ToString());
+                                totalSize += packageSize;
 
-                                if (Directory.Exists(directoryPath))
+                                Console.WriteLine($"- {packageName} ({packageSize:#,0} bytes)");
+
+                                if (Directory.Exists(packageLocation))
                                 {
-                                    Directory.Delete(directoryPath, true);
+                                    Directory.Delete(packageLocation, true);
                                 }
                             }
-
                             if (obsoletePackages.Length > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine($"Total: {obsoletePackages.Length} package(s) in {totalSize:#,0} bytes");
+                            Console.WriteLine($"Total: {obsoletePackages.Length} obsolete package(s) in {totalSize:#,0} bytes");
                         }
                         break;
                     default:
                         {
-                            throw new InvalidOperationException($"The specified command \"{command}\" is invalid");
+                            throw new InvalidOperationException("The specified command is invalid");
                         }
                 }
             }
@@ -139,15 +145,31 @@ namespace Community.VisualStudio.LayoutManager
             }
         }
 
+        private static string GetPackageName(CatalogPackageInfo package)
+        {
+            var builder = new StringBuilder($"{package.ID},version={package.Version}");
+
+            if (package.Chip != null)
+            {
+                builder.Append($",chip={package.Chip}");
+            }
+            if (package.Language != null)
+            {
+                builder.Append($",language={package.Language}");
+            }
+
+            return builder.ToString();
+        }
+
         private static long GetDirectorySize(string directoryPath)
         {
-            void GetDirectorySize(string parentName, ref long totalSize)
+            void GetDirectorySize(DirectoryInfo directory, ref long totalSize)
             {
-                foreach (var directoryName in Directory.GetDirectories(parentName))
+                foreach (var subdirectory in directory.GetDirectories())
                 {
-                    GetDirectorySize(directoryName, ref totalSize);
+                    GetDirectorySize(subdirectory, ref totalSize);
                 }
-                foreach (var file in new DirectoryInfo(parentName).GetFiles())
+                foreach (var file in directory.GetFiles())
                 {
                     totalSize += file.Length;
                 }
@@ -155,7 +177,7 @@ namespace Community.VisualStudio.LayoutManager
 
             var result = 0L;
 
-            GetDirectorySize(directoryPath, ref result);
+            GetDirectorySize(new DirectoryInfo(directoryPath), ref result);
 
             return result;
         }

@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Community.VisualStudio.LayoutManager.Data
 {
@@ -9,22 +8,6 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <summary>Initializes a new instance of the <see cref="CatalogPackageInfo" /> class.</summary>
         public CatalogPackageInfo()
         {
-        }
-
-        public override string ToString()
-        {
-            var builder = new StringBuilder($"{ID},version={Version}");
-
-            if (Chip != null)
-            {
-                builder.Append($",chip={Chip}");
-            }
-            if (Language != null)
-            {
-                builder.Append($",language={Language}");
-            }
-
-            return builder.ToString();
         }
 
         /// <summary>Gets or set identifier.</summary>
@@ -54,12 +37,6 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <summary>Gets or set language identifier.</summary>
         [JsonProperty("language")]
         public string Language
-        {
-            get;
-            set;
-        }
-
-        public long Size
         {
             get;
             set;
