@@ -25,7 +25,6 @@ namespace Community.VisualStudio.LayoutManager
             try
             {
                 var configuration = configurationBuilder.Build();
-
                 var layoutPath = configuration["layout"];
 
                 if (layoutPath == null)
@@ -137,11 +136,6 @@ namespace Community.VisualStudio.LayoutManager
                 var assemblyFile = Path.GetFileName(assembly.Location);
 
                 Console.WriteLine($"Usage: dotnet {assemblyFile} --layout <value> [--command <value>]");
-                Console.WriteLine();
-                Console.WriteLine("Supported commands:");
-                Console.WriteLine();
-                Console.WriteLine("    reveal   List obsolete packages (default command)");
-                Console.WriteLine("    clean    Remove obsolete packages");
             }
         }
 
