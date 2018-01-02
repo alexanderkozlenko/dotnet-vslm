@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using Community.VisualStudio.LayoutManager.Data;
+using Community.VisualStudio.LayoutManager.Resources;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -17,7 +19,7 @@ namespace Community.VisualStudio.LayoutManager
         {
             var assembly = typeof(Program).Assembly;
 
-            Console.WriteLine($"{assembly.GetCustomAttribute<AssemblyProductAttribute>().Product} {assembly.GetName().Version.ToString(3)}");
+            Console.WriteLine(assembly.GetCustomAttribute<AssemblyProductAttribute>().Product + " " + assembly.GetName().Version.ToString(3));
             Console.WriteLine();
 
             var configurationBuilder = new ConfigurationBuilder().AddCommandLine(args);
@@ -29,7 +31,7 @@ namespace Community.VisualStudio.LayoutManager
 
                 if (layoutPath == null)
                 {
-                    throw new InvalidOperationException("\"layout\" parameter is not specified");
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Strings.GetString("program.undefined_parameter"), "layout"));
                 }
 
                 var command = configuration["command"] ?? "reveal";
@@ -44,7 +46,7 @@ namespace Community.VisualStudio.LayoutManager
                 }
 
                 var layoutPackages = new List<CatalogPackageInfo>();
-                var packageNameRegex = new Regex("^(?<id>[^,]+),version=(?<version>[^,]+)(?:,chip=(?<chip>[^,]+))?(?:,language=(?<language>[^,]+))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                var packageNameRegex = new Regex("^(?<i>[^,]+),version=(?<v>[^,]+)(?:,chip=(?<c>[^,]+))?(?:,language=(?<l>[^,]+))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
                 foreach (var directoryPath in Directory.GetDirectories(layoutPath))
                 {
@@ -54,10 +56,10 @@ namespace Community.VisualStudio.LayoutManager
                     {
                         var package = new CatalogPackageInfo
                         {
-                            ID = match.Groups["id"].Value,
-                            Version = match.Groups["version"].Value,
-                            Chip = match.Groups["chip"].Success ? match.Groups["chip"].Value : null,
-                            Language = match.Groups["language"].Success ? match.Groups["language"].Value : null
+                            ID = match.Groups["i"].Value,
+                            Version = match.Groups["v"].Value,
+                            Chip = match.Groups["c"].Success ? match.Groups["c"].Value : null,
+                            Language = match.Groups["l"].Success ? match.Groups["l"].Value : null
                         };
 
                         layoutPackages.Add(package);
@@ -73,49 +75,50 @@ namespace Community.VisualStudio.LayoutManager
                 {
                     case "reveal":
                         {
-                            Console.WriteLine($"Listing obsolete packages in layout \"{catalogInfo.Product.SemanticVersion}\"...");
+                            Console.WriteLine(Strings.GetString("command.reveal.info_message"), catalogInfo.Product.SemanticVersion);
                             Console.WriteLine();
 
                             var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageName = GetPackageName(package);
-                                var packageLocation = Path.Combine(layoutPath, packageName);
+                                var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
                                 var packageSize = GetDirectorySize(packageLocation);
 
                                 totalSize += packageSize;
 
-                                Console.WriteLine($"- {packageName} ({packageSize:#,0} bytes)");
+                                Console.WriteLine(Strings.GetString("command.reveal.package_info"), CatalogPackageFormatter.GetPackageName(package), packageSize);
                             }
                             if (obsoletePackages.Length > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine($"Total: {obsoletePackages.Length} obsolete package(s) in {totalSize:#,0} bytes");
+                            Console.WriteLine(Strings.GetString("command.reveal.summary_message"), obsoletePackages.Length, totalSize);
                         }
                         break;
                     case "clean":
                         {
-                            Console.WriteLine($"Removing obsolete packages from layout \"{catalogInfo.Product.SemanticVersion}\"...");
+                            Console.WriteLine(Strings.GetString("command.clean.info_message"), catalogInfo.Product.SemanticVersion);
                             Console.WriteLine();
 
                             var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageName = GetPackageName(package);
-                                var packageLocation = Path.Combine(layoutPath, packageName);
+                                var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
                                 var packageSize = GetDirectorySize(packageLocation);
 
                                 totalSize += packageSize;
 
-                                Console.WriteLine($"- {packageName} ({packageSize:#,0} bytes)");
+                                Console.WriteLine(Strings.GetString("command.clean.package_info"), CatalogPackageFormatter.GetPackageName(package), packageSize);
 
-                                if (Directory.Exists(packageLocation))
+                                try
                                 {
                                     Directory.Delete(packageLocation, true);
+                                }
+                                catch (DirectoryNotFoundException)
+                                {
                                 }
                             }
                             if (obsoletePackages.Length > 0)
@@ -123,12 +126,12 @@ namespace Community.VisualStudio.LayoutManager
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine($"Total: {obsoletePackages.Length} obsolete package(s) in {totalSize:#,0} bytes");
+                            Console.WriteLine(Strings.GetString("command.clean.summary_message"), obsoletePackages.Length, totalSize);
                         }
                         break;
                     default:
                         {
-                            throw new InvalidOperationException("The specified command is invalid");
+                            throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Strings.GetString("program.invalid_parameter"), "command"));
                         }
                 }
             }
@@ -136,29 +139,10 @@ namespace Community.VisualStudio.LayoutManager
             {
                 Environment.ExitCode = 1;
 
-                Console.WriteLine($"ERROR: {ex.Message}");
+                Console.WriteLine(Strings.GetString("program.error_message"), ex.Message);
                 Console.WriteLine();
-
-                var assemblyFile = Path.GetFileName(assembly.Location);
-
-                Console.WriteLine($"Usage: dotnet {assemblyFile} --layout <value> [--command <value>]");
+                Console.WriteLine(Strings.GetString("program.usage_message"), Path.GetFileName(assembly.Location));
             }
-        }
-
-        private static string GetPackageName(CatalogPackageInfo package)
-        {
-            var builder = new StringBuilder($"{package.ID},version={package.Version}");
-
-            if (package.Chip != null)
-            {
-                builder.Append($",chip={package.Chip}");
-            }
-            if (package.Language != null)
-            {
-                builder.Append($",language={package.Language}");
-            }
-
-            return builder.ToString();
         }
 
         private static long GetDirectorySize(string directoryPath)
