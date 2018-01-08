@@ -113,13 +113,7 @@ namespace Community.VisualStudio.LayoutManager
 
                                 Console.WriteLine(Strings.GetString("command.clean.package_info"), CatalogPackageFormatter.GetPackageName(package), packageSize);
 
-                                try
-                                {
-                                    Directory.Delete(packageLocation, true);
-                                }
-                                catch (DirectoryNotFoundException)
-                                {
-                                }
+                                Directory.Delete(packageLocation, true);
                             }
                             if (obsoletePackages.Length > 0)
                             {
@@ -147,21 +141,12 @@ namespace Community.VisualStudio.LayoutManager
 
         private static long GetDirectorySize(string directoryPath)
         {
-            void GetDirectorySize(DirectoryInfo directory, ref long totalSize)
-            {
-                foreach (var subdirectory in directory.GetDirectories())
-                {
-                    GetDirectorySize(subdirectory, ref totalSize);
-                }
-                foreach (var file in directory.GetFiles())
-                {
-                    totalSize += file.Length;
-                }
-            }
-
             var result = 0L;
 
-            GetDirectorySize(new DirectoryInfo(directoryPath), ref result);
+            foreach (var file in new DirectoryInfo(directoryPath).GetFiles("*", SearchOption.AllDirectories))
+            {
+                result += file.Length;
+            }
 
             return result;
         }
