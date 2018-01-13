@@ -10,7 +10,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         {
         }
 
-        /// <summary>Gets or set semantic version.</summary>
+        /// <summary>Gets or sets semantic version.</summary>
         [JsonProperty("productSemanticVersion")]
         public string SemanticVersion
         {

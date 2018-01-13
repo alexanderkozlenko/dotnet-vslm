@@ -10,7 +10,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         {
         }
 
-        /// <summary>Gets or set product information.</summary>
+        /// <summary>Gets or sets product information.</summary>
         [JsonProperty("info")]
         public CatalogProductInfo Product
         {
@@ -18,7 +18,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or set packages.</summary>
+        /// <summary>Gets or sets packages collection.</summary>
         [JsonProperty("packages")]
         public CatalogPackageInfo[] Packages
         {

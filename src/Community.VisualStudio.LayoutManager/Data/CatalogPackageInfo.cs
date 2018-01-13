@@ -10,7 +10,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         {
         }
 
-        /// <summary>Gets or set identifier.</summary>
+        /// <summary>Gets or sets identifier.</summary>
         [JsonProperty("id")]
         public string ID
         {
@@ -18,7 +18,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or set version.</summary>
+        /// <summary>Gets or sets version.</summary>
         [JsonProperty("version")]
         public string Version
         {
@@ -26,7 +26,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or set chip identifier.</summary>
+        /// <summary>Gets or sets chip identifier.</summary>
         [JsonProperty("chip")]
         public string Chip
         {
@@ -34,7 +34,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or set language identifier.</summary>
+        /// <summary>Gets or sets language identifier.</summary>
         [JsonProperty("language")]
         public string Language
         {
