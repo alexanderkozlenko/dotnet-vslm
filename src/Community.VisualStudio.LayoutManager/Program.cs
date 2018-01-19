@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using Community.VisualStudio.LayoutManager.Data;
+using Community.VisualStudio.LayoutManager.Engine;
 using Community.VisualStudio.LayoutManager.Resources;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace Community.VisualStudio.LayoutManager
 {
@@ -35,38 +31,11 @@ namespace Community.VisualStudio.LayoutManager
                 }
 
                 var command = configuration["command"] ?? "reveal";
-                var catalogInfo = default(CatalogInfo);
 
-                using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    using (var reader = new StreamReader(stream, Encoding.UTF8))
-                    {
-                        catalogInfo = JsonConvert.DeserializeObject<CatalogInfo>(reader.ReadToEnd());
-                    }
-                }
+                var (manifestPackages, manifestVersion) = CatalogLoader.LoadManifestPackages(layoutPath);
+                var layoutPackages = CatalogLoader.LoadLayoutPackages(layoutPath);
 
-                var layoutPackages = new List<CatalogPackageInfo>();
-                var packageNameRegex = new Regex("^(?<i>[^,]+),version=(?<v>[^,]+)(?:,chip=(?<c>[^,]+))?(?:,language=(?<l>[^,]+))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-                foreach (var directoryPath in Directory.GetDirectories(layoutPath))
-                {
-                    var match = packageNameRegex.Match(Path.GetFileName(directoryPath));
-
-                    if (match.Success)
-                    {
-                        var package = new CatalogPackageInfo
-                        {
-                            ID = match.Groups["i"].Value,
-                            Version = match.Groups["v"].Value,
-                            Chip = match.Groups["c"].Success ? match.Groups["c"].Value : null,
-                            Language = match.Groups["l"].Success ? match.Groups["l"].Value : null
-                        };
-
-                        layoutPackages.Add(package);
-                    }
-                }
-
-                var obsoletePackages = layoutPackages.Except(catalogInfo.Packages, CatalogPackageComparer.Default)
+                var obsoletePackages = layoutPackages.Except(manifestPackages, CatalogPackageComparer.Default)
                     .OrderBy(x => x.ID)
                     .ThenBy(x => x.Version)
                     .ToArray();
@@ -75,7 +44,7 @@ namespace Community.VisualStudio.LayoutManager
                 {
                     case "reveal":
                         {
-                            Console.WriteLine(Strings.GetString("command.reveal.info_message"), catalogInfo.Product.SemanticVersion);
+                            Console.WriteLine(Strings.GetString("command.reveal.info_message"), manifestVersion);
                             Console.WriteLine();
 
                             var totalSize = 0L;
@@ -83,7 +52,7 @@ namespace Community.VisualStudio.LayoutManager
                             foreach (var package in obsoletePackages)
                             {
                                 var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
-                                var packageSize = GetDirectorySize(packageLocation);
+                                var packageSize = DirectoryContentInfo.GetSize(packageLocation);
 
                                 totalSize += packageSize;
 
@@ -99,7 +68,7 @@ namespace Community.VisualStudio.LayoutManager
                         break;
                     case "clean":
                         {
-                            Console.WriteLine(Strings.GetString("command.clean.info_message"), catalogInfo.Product.SemanticVersion);
+                            Console.WriteLine(Strings.GetString("command.clean.info_message"), manifestVersion);
                             Console.WriteLine();
 
                             var totalSize = 0L;
@@ -107,7 +76,7 @@ namespace Community.VisualStudio.LayoutManager
                             foreach (var package in obsoletePackages)
                             {
                                 var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
-                                var packageSize = GetDirectorySize(packageLocation);
+                                var packageSize = DirectoryContentInfo.GetSize(packageLocation);
 
                                 totalSize += packageSize;
 
@@ -137,18 +106,6 @@ namespace Community.VisualStudio.LayoutManager
                 Console.WriteLine();
                 Console.WriteLine(Strings.GetString("program.usage_message"), Path.GetFileName(assembly.Location));
             }
-        }
-
-        private static long GetDirectorySize(string directoryPath)
-        {
-            var result = 0L;
-
-            foreach (var file in new DirectoryInfo(directoryPath).GetFiles("*", SearchOption.AllDirectories))
-            {
-                result += file.Length;
-            }
-
-            return result;
         }
     }
 }

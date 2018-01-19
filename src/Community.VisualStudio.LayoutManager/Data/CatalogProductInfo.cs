@@ -11,7 +11,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets semantic version.</summary>
-        [JsonProperty("productSemanticVersion")]
+        [JsonProperty("productSemanticVersion", Required = Required.Always)]
         public string SemanticVersion
         {
             get;

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using Community.VisualStudio.LayoutManager.Data;
 
-namespace Community.VisualStudio.LayoutManager
+namespace Community.VisualStudio.LayoutManager.Engine
 {
     /// <summary>A <see cref="CatalogPackageInfo" /> formatter.</summary>
     internal static class CatalogPackageFormatter

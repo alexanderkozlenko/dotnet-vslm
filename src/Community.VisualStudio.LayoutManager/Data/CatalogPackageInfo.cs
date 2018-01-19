@@ -11,7 +11,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets identifier.</summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", Required = Required.Always)]
         public string ID
         {
             get;
@@ -19,7 +19,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets version.</summary>
-        [JsonProperty("version")]
+        [JsonProperty("version", Required = Required.Always)]
         public string Version
         {
             get;

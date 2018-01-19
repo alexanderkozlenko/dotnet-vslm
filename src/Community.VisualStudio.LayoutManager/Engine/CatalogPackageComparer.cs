@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Community.VisualStudio.LayoutManager.Data;
 
-namespace Community.VisualStudio.LayoutManager
+namespace Community.VisualStudio.LayoutManager.Engine
 {
     /// <summary>Catalog package equality comparer.</summary>
     internal sealed class CatalogPackageComparer : IEqualityComparer<CatalogPackageInfo>
