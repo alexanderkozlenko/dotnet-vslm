@@ -38,6 +38,8 @@ namespace Community.VisualStudio.LayoutManager
                 var obsoletePackages = layoutPackages.Except(manifestPackages, CatalogPackageComparer.Default)
                     .OrderBy(x => x.ID)
                     .ThenBy(x => x.Version)
+                    .ThenBy(x => x.Chip)
+                    .ThenBy(x => x.Language)
                     .ToArray();
 
                 switch (command)
