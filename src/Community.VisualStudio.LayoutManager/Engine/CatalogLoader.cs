@@ -26,7 +26,7 @@ namespace Community.VisualStudio.LayoutManager.Engine
 
             var catalogInfo = default(CatalogInfo);
 
-            using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read, 8 * 1024 * 1024))
             {
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
