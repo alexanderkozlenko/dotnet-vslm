@@ -1,6 +1,6 @@
 ## Visual Studio 2017 Setup Layout Manager
 
-Provides an ability to display and remove obsolete packages from the Visual Studio 2017 installation layout. Each package which is not listed in the current catalog file `Catalog.json` is considered as absolete.
+Provides an ability to display and remove obsolete packages from the Visual Studio 2017 installation layout. Each package which is not listed in the current catalog file `Catalog.json` is considered as obsolete.
 
 ### Run instruction:
 
