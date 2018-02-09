@@ -24,17 +24,17 @@ namespace Community.VisualStudio.LayoutManager.Engine
                 throw new ArgumentNullException(nameof(layoutPath));
             }
 
-            var catalogInfo = default(CatalogInfo);
+            // Use buffer size of 8 MB to load the file in one pass
 
             using (var stream = new FileStream(Path.Combine(layoutPath, "Catalog.json"), FileMode.Open, FileAccess.Read, FileShare.Read, 8 * 1024 * 1024))
             {
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    catalogInfo = JsonConvert.DeserializeObject<CatalogInfo>(reader.ReadToEnd());
+                    var catalogInfo = JsonConvert.DeserializeObject<CatalogInfo>(reader.ReadToEnd());
+
+                    return (catalogInfo.Packages, catalogInfo.Product.SemanticVersion);
                 }
             }
-
-            return (catalogInfo.Packages, catalogInfo.Product.SemanticVersion);
         }
 
         /// <summary>Loads packages collection from installation layout.</summary>
