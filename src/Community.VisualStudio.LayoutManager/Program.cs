@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Community.VisualStudio.LayoutManager.Engine;
 using Community.VisualStudio.LayoutManager.Resources;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +16,8 @@ namespace Community.VisualStudio.LayoutManager
         {
             var assembly = typeof(Program).Assembly;
 
-            Console.WriteLine(assembly.GetCustomAttribute<AssemblyProductAttribute>().Product + " " + assembly.GetName().Version.ToString(3));
+            Console.WriteLine(Strings.GetString("program.assembly_info"), assembly.GetCustomAttribute<AssemblyProductAttribute>().Product, assembly.GetName().Version.ToString(3));
+            Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright);
             Console.WriteLine();
 
             var configurationBuilder = new ConfigurationBuilder().AddCommandLine(args);
@@ -31,12 +33,13 @@ namespace Community.VisualStudio.LayoutManager
                 }
 
                 var command = configuration["command"] ?? "reveal";
+                var provider = new LayoutPackagesProvider();
 
-                var (manifestPackages, manifestVersion) = CatalogLoader.LoadManifestPackages(layoutPath);
-                var layoutPackages = CatalogLoader.LoadLayoutPackages(layoutPath);
+                var catalogPackages = provider.AcquireCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8));
+                var localPackages = provider.AcquireLocalPackages(Directory.GetDirectories(layoutPath));
 
-                var obsoletePackages = layoutPackages.Except(manifestPackages, CatalogPackageComparer.Default)
-                    .OrderBy(x => x.ID)
+                var obsoletePackages = localPackages.Except(catalogPackages)
+                    .OrderBy(x => x.Id)
                     .ThenBy(x => x.Version)
                     .ThenBy(x => x.Chip)
                     .ThenBy(x => x.Language)
@@ -46,19 +49,16 @@ namespace Community.VisualStudio.LayoutManager
                 {
                     case "reveal":
                         {
-                            Console.WriteLine(Strings.GetString("command.reveal.info_message"), manifestVersion);
-                            Console.WriteLine();
-
                             var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
-                                var packageSize = DirectoryContentInfo.GetSize(packageLocation);
+                                var packageLocation = Path.Combine(layoutPath, package.GetDirectoryName());
+                                var packageSize = new DirectoryInfo(packageLocation).GetSize();
 
                                 totalSize += packageSize;
 
-                                Console.WriteLine(Strings.GetString("command.reveal.package_info"), CatalogPackageFormatter.GetPackageName(package), packageSize);
+                                Console.WriteLine(Strings.GetString("command.reveal.package_info"), package, packageSize);
                             }
                             if (obsoletePackages.Length > 0)
                             {
@@ -70,21 +70,17 @@ namespace Community.VisualStudio.LayoutManager
                         break;
                     case "clean":
                         {
-                            Console.WriteLine(Strings.GetString("command.clean.info_message"), manifestVersion);
-                            Console.WriteLine();
-
                             var totalSize = 0L;
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageLocation = Path.Combine(layoutPath, CatalogPackageFormatter.GetPackageDirectoryName(package));
-                                var packageSize = DirectoryContentInfo.GetSize(packageLocation);
+                                var packageLocation = Path.Combine(layoutPath, package.GetDirectoryName());
+                                var packageSize = new DirectoryInfo(packageLocation).GetSize();
 
                                 totalSize += packageSize;
 
-                                Console.WriteLine(Strings.GetString("command.clean.package_info"), CatalogPackageFormatter.GetPackageName(package), packageSize);
-
                                 Directory.Delete(packageLocation, true);
+                                Console.WriteLine(Strings.GetString("command.clean.package_info"), package, packageSize);
                             }
                             if (obsoletePackages.Length > 0)
                             {
@@ -104,7 +100,11 @@ namespace Community.VisualStudio.LayoutManager
             {
                 Environment.ExitCode = 1;
 
-                Console.WriteLine(Strings.GetString("program.error_message"), ex.Message);
+                var foregroundColor = Console.ForegroundColor;
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Error.WriteLine(Strings.GetString("program.error_message"), ex.Message);
+                Console.ForegroundColor = foregroundColor;
                 Console.WriteLine();
                 Console.WriteLine(Strings.GetString("program.usage_message"), Path.GetFileName(assembly.Location));
             }

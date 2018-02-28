@@ -2,23 +2,23 @@
 
 namespace Community.VisualStudio.LayoutManager.Data
 {
-    /// <summary>Represents catalog package information.</summary>
-    internal sealed class CatalogPackageInfo
+    /// <summary>Represents layout package information in JSON.</summary>
+    internal sealed class JsonLayoutPackage
     {
-        /// <summary>Initializes a new instance of the <see cref="CatalogPackageInfo" /> class.</summary>
-        public CatalogPackageInfo()
+        /// <summary>Initializes a new instance of the <see cref="JsonLayoutPackage" /> class.</summary>
+        public JsonLayoutPackage()
         {
         }
 
-        /// <summary>Gets or sets identifier.</summary>
+        /// <summary>Gets or sets the package identifier.</summary>
         [JsonProperty("id", Required = Required.Always)]
-        public string ID
+        public string Id
         {
             get;
             set;
         }
 
-        /// <summary>Gets or sets version.</summary>
+        /// <summary>Gets or sets the package version.</summary>
         [JsonProperty("version", Required = Required.Always)]
         public string Version
         {
@@ -26,7 +26,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or sets chip identifier.</summary>
+        /// <summary>Gets or sets the package chip code.</summary>
         [JsonProperty("chip")]
         public string Chip
         {
@@ -34,7 +34,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or sets language identifier.</summary>
+        /// <summary>Gets or sets the package language code.</summary>
         [JsonProperty("language")]
         public string Language
         {

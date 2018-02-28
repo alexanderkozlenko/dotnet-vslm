@@ -1,0 +1,83 @@
+{
+	"packages": [
+		{
+			"id": "Anaconda2.Exe.x64",
+			"version": "5.0.0",
+			"type": "Exe",
+			"chip": "x64",
+			"payloads": [
+				{
+					"fileName": "Anaconda2-5.0.0-Windows-x86_64.exe",
+					"sha256": "5fb73395cdf003613f5d44844da9870dbdc2a35cede0f928b02c38b5ee2ebb55",
+					"size": 522426032,
+					"url": "https://go.microsoft.com/fwlink/?LinkID=860242"
+				}
+			],
+			"detectConditions": {
+				"expression": "Version",
+				"conditions": [
+					{
+						"registryKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\ContinuumAnalytics\\Anaconda27-64",
+						"id": "Version",
+						"registryValue": "Version",
+						"registryData": "[5.0.0,)"
+					}
+				]
+			},
+			"installParams": {
+				"fileName": "[Payload]",
+				"parameters": "/InstallationType=AllUsers /RegisterPython=0 /S /D=[SharedInstallDir]\\Anaconda2_64"
+			},
+			"uninstallParams": {
+				"fileName": "[SharedInstallDir]\\Anaconda2_64\\Uninstall-Anaconda.exe",
+				"parameters": "/S"
+			},
+			"providerKey": "VS-Anaconda-x64,v2",
+			"installSizes": {
+				"sharedDrive": 4198530620
+			}
+		},
+		{
+			"id": "Anaconda2.Exe.x86",
+			"version": "5.0.0",
+			"type": "Exe",
+			"payloads": [
+				{
+					"fileName": "Anaconda2-5.0.0-Windows-x86.exe",
+					"sha256": "078551cfb0df72779897026724f375671e12a5fd384cabeaede5cc325cac12e3",
+					"size": 421720568,
+					"url": "https://go.microsoft.com/fwlink/?LinkID=860244"
+				}
+			],
+			"detectConditions": {
+				"expression": "X86OnX86 or X86OnX64",
+				"conditions": [
+					{
+						"registryKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\ContinuumAnalytics\\Anaconda27-32",
+						"id": "X86OnX86",
+						"registryValue": "Version",
+						"registryData": "[5.0.0,)"
+					},
+					{
+						"registryKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Python\\ContinuumAnalytics\\Anaconda27-32",
+						"id": "X86OnX64",
+						"registryValue": "Version",
+						"registryData": "[5.0.0,)"
+					}
+				]
+			},
+			"installParams": {
+				"fileName": "[Payload]",
+				"parameters": "/InstallationType=AllUsers /RegisterPython=0 /S /D=[SharedInstallDir]\\Anaconda2_86"
+			},
+			"uninstallParams": {
+				"fileName": "[SharedInstallDir]\\Anaconda2_86\\Uninstall-Anaconda.exe",
+				"parameters": "/S"
+			},
+			"providerKey": "VS-Anaconda-x86,v2",
+			"installSizes": {
+				"sharedDrive": 3420354206
+			}
+		}
+	]
+}
