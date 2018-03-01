@@ -49,7 +49,9 @@ namespace Community.VisualStudio.LayoutManager.Tests
         [Fact]
         public void AcquireLocalPackages()
         {
-            var directories = EmbeddedResourceManager.GetString("Assets.Catalog.log").Split(Environment.NewLine);
+            var directories = EmbeddedResourceManager.GetString("Assets.Catalog.log")
+                .Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
             var provider = new LayoutPackagesProvider();
 
             var packages = provider.AcquireLocalPackages(directories);
