@@ -24,14 +24,12 @@ namespace Community.VisualStudio.LayoutManager
             try
             {
                 var configuration = configurationBuilder.Build();
-                var layoutPath = configuration["layout"];
-
-                if (layoutPath == null)
-                {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Strings.GetString("program.undefined_parameter"), "layout"));
-                }
-
+                var layoutPath = configuration["layout"] ?? Environment.CurrentDirectory;
                 var command = configuration["command"] ?? "reveal";
+
+                Console.WriteLine(Strings.GetString("program.layout_info"), layoutPath);
+                Console.WriteLine();
+
                 var provider = new LayoutPackagesProvider();
 
                 var catalogPackages = provider.GetCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8));

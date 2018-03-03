@@ -3,13 +3,13 @@
 A tool for listing and removing obsolete packages from the Visual Studio installation layout (version 2017 and later). 
 
 ```
-dotnet vslm.dll --layout <value> [--command <value>]
+dotnet vslm.dll [--layout <value>] [--command <value>]
 ```
 
-Parameter | Mandatory | Default Value | Purpose
---- | :---: | --- | ---
-`--layout` | Yes | | The layout directory
-`--command` | No | `reveal` | The command to execute
+Parameter | Default Value | Purpose
+--- | --- | ---
+`--layout` | `.\` | The layout directory
+`--command` | `reveal` | The command to execute
 
 Command | Purpose
 --- | ---
@@ -27,6 +27,8 @@ Output example for the `reveal` command:
 
 ```
 Visual Studio Layout Manager version 1.0.0
+
+Working with layout "\\server\vs2017\"
 
 Found Anaconda2.Exe.x64 5.0.0 x64 (522,426,032 bytes)
 Found Anaconda2.Exe.x86 5.0.0 (421,720,568 bytes)
