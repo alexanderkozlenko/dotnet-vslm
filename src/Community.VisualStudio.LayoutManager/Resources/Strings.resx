@@ -141,6 +141,15 @@
   <data name="program.layout_info" xml:space="preserve">
     <value>Working with layout "{0}"</value>
   </data>
+  <data name="program.usage_commands" xml:space="preserve">
+    <value>Commands:</value>
+  </data>
+  <data name="program.usage_command_clean" xml:space="preserve">
+    <value>  clean&#x9;Remove obsolete packages from the layout</value>
+  </data>
+  <data name="program.usage_command_list" xml:space="preserve">
+    <value>  list&#x9;Display obsolete packages from the layout (default command)</value>
+  </data>
   <data name="program.usage_message" xml:space="preserve">
     <value>Usage: dotnet {0} [--layout &lt;value&gt;] [--command &lt;value&gt;]</value>
   </data>

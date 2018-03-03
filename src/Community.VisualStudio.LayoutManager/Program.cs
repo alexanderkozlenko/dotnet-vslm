@@ -25,7 +25,7 @@ namespace Community.VisualStudio.LayoutManager
             {
                 var configuration = configurationBuilder.Build();
                 var layoutPath = configuration["layout"] ?? Environment.CurrentDirectory;
-                var command = configuration["command"] ?? "reveal";
+                var command = configuration["command"] ?? "list";
 
                 Console.WriteLine(Strings.GetString("program.layout_info"), layoutPath);
                 Console.WriteLine();
@@ -38,7 +38,7 @@ namespace Community.VisualStudio.LayoutManager
 
                 switch (command)
                 {
-                    case "reveal":
+                    case "list":
                         {
                             var totalSize = 0L;
 
@@ -98,6 +98,11 @@ namespace Community.VisualStudio.LayoutManager
                 Console.ForegroundColor = foregroundColor;
                 Console.WriteLine();
                 Console.WriteLine(Strings.GetString("program.usage_message"), Path.GetFileName(assembly.Location));
+                Console.WriteLine();
+                Console.WriteLine(Strings.GetString("program.usage_commands"));
+                Console.WriteLine();
+                Console.WriteLine(Strings.GetString("program.usage_command_list"));
+                Console.WriteLine(Strings.GetString("program.usage_command_clean"));
             }
         }
     }

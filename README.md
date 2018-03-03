@@ -9,11 +9,11 @@ dotnet vslm.dll [--layout <value>] [--command <value>]
 Parameter | Default Value | Purpose
 --- | --- | ---
 `--layout` | `.\` | The layout directory
-`--command` | `reveal` | The command to execute
+`--command` | `list` | The command to execute
 
 Command | Purpose
 --- | ---
-`reveal` | List obsolete packages from the layout
+`list` | Display obsolete packages from the layout
 `clean` | Remove obsolete packages from the layout
 
 ### Specifics
@@ -23,7 +23,7 @@ Command | Purpose
 
 ### Examples
 
-Output example for the `reveal` command:
+Output example for the `list` command:
 
 ```
 Visual Studio Layout Manager version 1.0.0
