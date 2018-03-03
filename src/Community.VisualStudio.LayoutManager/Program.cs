@@ -16,7 +16,7 @@ namespace Community.VisualStudio.LayoutManager
             var assembly = typeof(Program).Assembly;
 
             Console.WriteLine(Strings.GetString("program.assembly_info"), assembly.GetCustomAttribute<AssemblyProductAttribute>().Product, assembly.GetName().Version.ToString(3));
-            Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright);
+            Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright?.Replace("\u00A9", "(c)"));
             Console.WriteLine();
 
             var configurationBuilder = new ConfigurationBuilder().AddCommandLine(args);

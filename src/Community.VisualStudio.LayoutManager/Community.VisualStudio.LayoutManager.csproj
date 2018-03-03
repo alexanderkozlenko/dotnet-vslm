@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Version>1.0.13</Version>
     <Product><![CDATA[Visual Studio Layout Manager]]></Product>
-    <Copyright><![CDATA[(c) Alexander Kozlenko. All rights reserved.]]></Copyright>
+    <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
