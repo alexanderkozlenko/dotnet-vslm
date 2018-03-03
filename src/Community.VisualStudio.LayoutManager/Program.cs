@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using Community.VisualStudio.LayoutManager.Engine;
@@ -35,15 +34,9 @@ namespace Community.VisualStudio.LayoutManager
                 var command = configuration["command"] ?? "reveal";
                 var provider = new LayoutPackagesProvider();
 
-                var catalogPackages = provider.AcquireCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8));
-                var localPackages = provider.AcquireLocalPackages(Directory.GetDirectories(layoutPath));
-
-                var obsoletePackages = localPackages.Except(catalogPackages)
-                    .OrderBy(x => x.Id)
-                    .ThenBy(x => x.Version)
-                    .ThenBy(x => x.Chip)
-                    .ThenBy(x => x.Language)
-                    .ToArray();
+                var catalogPackages = provider.GetCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8));
+                var localPackages = provider.GetLocalPackages(Directory.GetDirectories(layoutPath));
+                var obsoletePackages = provider.GetObsoletePackages(catalogPackages, localPackages);
 
                 switch (command)
                 {
@@ -60,12 +53,12 @@ namespace Community.VisualStudio.LayoutManager
 
                                 Console.WriteLine(Strings.GetString("command.reveal.package_info"), package, packageSize);
                             }
-                            if (obsoletePackages.Length > 0)
+                            if (obsoletePackages.Count > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine(Strings.GetString("command.reveal.summary_message"), obsoletePackages.Length, totalSize);
+                            Console.WriteLine(Strings.GetString("command.reveal.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
                     case "clean":
@@ -82,12 +75,12 @@ namespace Community.VisualStudio.LayoutManager
                                 Directory.Delete(packageLocation, true);
                                 Console.WriteLine(Strings.GetString("command.clean.package_info"), package, packageSize);
                             }
-                            if (obsoletePackages.Length > 0)
+                            if (obsoletePackages.Count > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine(Strings.GetString("command.clean.summary_message"), obsoletePackages.Length, totalSize);
+                            Console.WriteLine(Strings.GetString("command.clean.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
                     default:

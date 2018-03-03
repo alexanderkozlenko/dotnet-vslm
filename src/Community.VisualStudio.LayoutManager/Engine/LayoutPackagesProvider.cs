@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Community.VisualStudio.LayoutManager.Data;
 using Newtonsoft.Json;
@@ -17,11 +18,11 @@ namespace Community.VisualStudio.LayoutManager.Engine
         {
         }
 
-        /// <summary>Acquires defined packages collection from the installation layout.</summary>
+        /// <summary>Gets catalog packages from the installation layout.</summary>
         /// <param name="json">The layout manifest JSON content.</param>
-        /// <returns>The layout packages collection.</returns>
+        /// <returns>The packages collection.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="layoutPath" /> is <see langword="null" />.</exception>
-        public IReadOnlyList<LayoutPackage> AcquireCatalogPackages(string json)
+        public IReadOnlyCollection<LayoutPackage> GetCatalogPackages(string json)
         {
             if (json == null)
             {
@@ -29,30 +30,30 @@ namespace Community.VisualStudio.LayoutManager.Engine
             }
 
             var catalog = JsonConvert.DeserializeObject<JsonLayoutCatalog>(json);
-            var packages = new LayoutPackage[catalog.Packages.Length];
+            var packages = new HashSet<LayoutPackage>(catalog.Packages.Length);
 
-            for (var i = 0; i < packages.Length; i++)
+            for (var i = 0; i < catalog.Packages.Length; i++)
             {
                 var jsonPackage = catalog.Packages[i];
 
-                packages[i] = new LayoutPackage(jsonPackage.Id, jsonPackage.Version, jsonPackage.Chip, jsonPackage.Language);
+                packages.Add(new LayoutPackage(jsonPackage.Id, jsonPackage.Version, jsonPackage.Chip, jsonPackage.Language));
             }
 
             return packages;
         }
 
-        /// <summary>Acquires actual packages collection from the installation layout.</summary>
+        /// <summary>Gets actual packages from the installation layout.</summary>
         /// <param name="directories">The layout directories.</param>
-        /// <returns>The layout packages collection.</returns>
+        /// <returns>The packages collection.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="layoutPath" /> is <see langword="null" />.</exception>
-        public IReadOnlyList<LayoutPackage> AcquireLocalPackages(IReadOnlyList<string> directories)
+        public IReadOnlyCollection<LayoutPackage> GetLocalPackages(IReadOnlyList<string> directories)
         {
             if (directories == null)
             {
                 throw new ArgumentNullException(nameof(directories));
             }
 
-            var packages = new List<LayoutPackage>(directories.Count);
+            var packages = new HashSet<LayoutPackage>(directories.Count);
 
             for (var i = 0; i < directories.Count; i++)
             {
@@ -72,6 +73,30 @@ namespace Community.VisualStudio.LayoutManager.Engine
             }
 
             return packages;
+        }
+
+        /// <summary>Gets obsolete packages from the installation layout.</summary>
+        /// <param name="catalogPackages">The catalog packages from the installation layout.</param>
+        /// <param name="localPackages">The local packages from the installation layout.</param>
+        /// <returns>The packages collection.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="catalogPackages" /> or <paramref name="localPackages" /> is <see langword="null" />.</exception>
+        public IReadOnlyCollection<LayoutPackage> GetObsoletePackages(IReadOnlyCollection<LayoutPackage> catalogPackages, IReadOnlyCollection<LayoutPackage> localPackages)
+        {
+            if (catalogPackages == null)
+            {
+                throw new ArgumentNullException(nameof(catalogPackages));
+            }
+            if (localPackages == null)
+            {
+                throw new ArgumentNullException(nameof(localPackages));
+            }
+
+            return localPackages.Except(catalogPackages)
+                .OrderBy(p => p.Id)
+                .ThenBy(p => p.Version)
+                .ThenBy(p => p.Chip)
+                .ThenBy(p => p.Language)
+                .ToHashSet();
         }
     }
 }
