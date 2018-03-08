@@ -34,9 +34,14 @@ namespace Community.VisualStudio.LayoutManager.Engine
 
             for (var i = 0; i < catalog.Packages.Length; i++)
             {
-                var jsonPackage = catalog.Packages[i];
+                var package = new LayoutPackage(
+                    catalog.Packages[i].Id,
+                    catalog.Packages[i].Version,
+                    catalog.Packages[i].Chip,
+                    catalog.Packages[i].Language
+                );
 
-                packages.Add(new LayoutPackage(jsonPackage.Id, jsonPackage.Version, jsonPackage.Chip, jsonPackage.Language));
+                packages.Add(package);
             }
 
             return packages;
