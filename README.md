@@ -23,8 +23,9 @@ Command | Purpose
 
 ### Examples
 
-Output example for the `list` command:
-
+```
+dotnet vslm.dll --layout \\server\vs2017\
+```
 ```
 Visual Studio Layout Manager version 1.0.0
 
