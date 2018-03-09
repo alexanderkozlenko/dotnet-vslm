@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Community.VisualStudio.LayoutManager.Data;
 using Community.VisualStudio.LayoutManager.Engine;
@@ -74,7 +73,7 @@ namespace Community.VisualStudio.LayoutManager.Tests
         public void GetObsoletePackagesWhenCatalogPackagesIsNull()
         {
             var provider = new LayoutPackagesProvider();
-            var localPackages = new HashSet<LayoutPackage> { };
+            var localPackages = new LayoutPackage[] { };
 
             Assert.Throws<ArgumentNullException>(() =>
                 provider.GetObsoletePackages(null, localPackages));
@@ -84,7 +83,7 @@ namespace Community.VisualStudio.LayoutManager.Tests
         public void GetObsoletePackagesWhenLocalPackagesIsNull()
         {
             var provider = new LayoutPackagesProvider();
-            var catalogPackages = new HashSet<LayoutPackage> { };
+            var catalogPackages = new LayoutPackage[] { };
 
             Assert.Throws<ArgumentNullException>(() =>
                 provider.GetObsoletePackages(catalogPackages, null));
@@ -95,12 +94,12 @@ namespace Community.VisualStudio.LayoutManager.Tests
         {
             var provider = new LayoutPackagesProvider();
 
-            var catalogPackages = new HashSet<LayoutPackage>
+            var catalogPackages = new[]
             {
                 new LayoutPackage("package_1", "2.0.0", null, null),
                 new LayoutPackage("package_2", "2.0.0", null, null)
             };
-            var localPackages = new HashSet<LayoutPackage>
+            var localPackages = new[]
             {
                 new LayoutPackage("package_1", "1.0.0", null, null),
                 new LayoutPackage("package_1", "2.0.0", null, null),
