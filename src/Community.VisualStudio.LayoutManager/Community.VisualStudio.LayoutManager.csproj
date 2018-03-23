@@ -10,6 +10,7 @@
     <AssemblyName>vslm</AssemblyName>
     <NoWin32Manifest>True</NoWin32Manifest>
     <OutputPath>$(RepositoryPath)/bin/bin/$(AssemblyName)/$(Configuration)/</OutputPath>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>
