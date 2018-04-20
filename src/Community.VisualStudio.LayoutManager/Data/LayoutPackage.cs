@@ -63,10 +63,17 @@ namespace Community.VisualStudio.LayoutManager.Data
             {
                 var result = (int)2166136261;
 
-                result = (result * 16777619) ^ (Id.ToLowerInvariant().GetHashCode());
-                result = (result * 16777619) ^ (Version.ToLowerInvariant().GetHashCode());
-                result = (result * 16777619) ^ (Chip?.ToLowerInvariant()?.GetHashCode() ?? 0);
-                result = (result * 16777619) ^ (Language?.ToLowerInvariant()?.GetHashCode() ?? 0);
+                result = (result * 16777619) ^ Id.ToLowerInvariant().GetHashCode();
+                result = (result * 16777619) ^ Version.ToLowerInvariant().GetHashCode();
+
+                if (Chip != null)
+                {
+                    result = (result * 16777619) ^ Chip.ToLowerInvariant().GetHashCode();
+                }
+                if (Language != null)
+                {
+                    result = (result * 16777619) ^ Language.ToLowerInvariant().GetHashCode();
+                }
 
                 return result;
             }
@@ -80,11 +87,11 @@ namespace Community.VisualStudio.LayoutManager.Data
 
             if (Chip != null)
             {
-                builder.AppendFormat(CultureInfo.InvariantCulture, "-{0}", Chip);
+                builder.Append("-" + Chip);
             }
             if (Language != null)
             {
-                builder.AppendFormat(CultureInfo.InvariantCulture, "-{0}", Language);
+                builder.Append("-" + Language);
             }
 
             return builder.ToString();
@@ -98,11 +105,13 @@ namespace Community.VisualStudio.LayoutManager.Data
 
             if (Chip != null)
             {
-                builder.AppendFormat(CultureInfo.InvariantCulture, ",chip={0}", Chip);
+                builder.Append(',');
+                builder.Append("chip=" + Chip);
             }
             if (Language != null)
             {
-                builder.AppendFormat(CultureInfo.InvariantCulture, ",language={0}", Language);
+                builder.Append(',');
+                builder.Append("language=" + Language);
             }
 
             return builder.ToString();

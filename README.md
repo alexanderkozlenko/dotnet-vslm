@@ -1,6 +1,6 @@
 ## Visual Studio Layout Manager
 
-A tool for listing and removing obsolete packages from the Visual Studio installation layout (version 2017 and later). 
+A tool for dealing with obsolete packages from the Visual Studio 2017 installation layout. 
 
 ```
 dotnet vslm.dll [--layout <value>] [--command <value>]
