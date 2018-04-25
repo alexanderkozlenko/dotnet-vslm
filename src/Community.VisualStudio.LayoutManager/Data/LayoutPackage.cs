@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text;
 
 namespace Community.VisualStudio.LayoutManager.Data
@@ -10,10 +9,10 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <summary>Initializes a new instance of the <see cref="LayoutPackage" /> class.</summary>
         /// <param name="id">The package identifier.</param>
         /// <param name="version">The package version.</param>
-        /// <param name="chip">The package chip code.</param>
+        /// <param name="architecture">The package architecture code.</param>
         /// <param name="language">The package language code.</param>
         /// <exception cref="ArgumentNullException"><paramref name="id" /> or <paramref name="version" /> is <see langword="null" />.</exception>
-        public LayoutPackage(string id, string version, string chip, string language)
+        public LayoutPackage(string id, string version, string architecture, string language)
         {
             if (id == null)
             {
@@ -26,7 +25,7 @@ namespace Community.VisualStudio.LayoutManager.Data
 
             Id = id;
             Version = version;
-            Chip = chip;
+            Architecture = architecture;
             Language = language;
         }
 
@@ -43,7 +42,7 @@ namespace Community.VisualStudio.LayoutManager.Data
             return
                 (string.Compare(Id, other.Id, StringComparison.InvariantCultureIgnoreCase) == 0) &&
                 (string.Compare(Version, other.Version, StringComparison.InvariantCultureIgnoreCase) == 0) &&
-                (string.Compare(Chip, other.Chip, StringComparison.InvariantCultureIgnoreCase) == 0) &&
+                (string.Compare(Architecture, other.Architecture, StringComparison.InvariantCultureIgnoreCase) == 0) &&
                 (string.Compare(Language, other.Language, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
 
@@ -52,7 +51,7 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns><see langword="true" /> if the current <see cref="LayoutPackage" /> is equal to the <paramref name="obj" /> parameter; otherwise, <see langword="false" />.</returns>
         public override bool Equals(object obj)
         {
-            return obj is LayoutPackage other ? Equals(other) : false;
+            return (obj is LayoutPackage other) && Equals(other);
         }
 
         /// <summary>Serves as the default hash function.</summary>
@@ -66,9 +65,9 @@ namespace Community.VisualStudio.LayoutManager.Data
                 result = (result * 16777619) ^ Id.ToLowerInvariant().GetHashCode();
                 result = (result * 16777619) ^ Version.ToLowerInvariant().GetHashCode();
 
-                if (Chip != null)
+                if (Architecture != null)
                 {
-                    result = (result * 16777619) ^ Chip.ToLowerInvariant().GetHashCode();
+                    result = (result * 16777619) ^ Architecture.ToLowerInvariant().GetHashCode();
                 }
                 if (Language != null)
                 {
@@ -83,15 +82,20 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns>A string that represents the current <see cref="LayoutPackage" />.</returns>
         public override string ToString()
         {
-            var builder = new StringBuilder(string.Format(CultureInfo.InvariantCulture, "{0}-{1}", Id, Version));
+            var builder = new StringBuilder(Id);
 
-            if (Chip != null)
+            builder.Append('-');
+            builder.Append(Version);
+
+            if (Architecture != null)
             {
-                builder.Append("-" + Chip);
+                builder.Append('-');
+                builder.Append(Architecture);
             }
             if (Language != null)
             {
-                builder.Append("-" + Language);
+                builder.Append('-');
+                builder.Append(Language);
             }
 
             return builder.ToString();
@@ -101,17 +105,26 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns>The package directory name.</returns>
         public string GetDirectoryName()
         {
-            var builder = new StringBuilder(string.Format(CultureInfo.InvariantCulture, "{0},version={1}", Id, Version));
+            var builder = new StringBuilder(Id);
 
-            if (Chip != null)
+            builder.Append(',');
+            builder.Append("version");
+            builder.Append('=');
+            builder.Append(Version);
+
+            if (Architecture != null)
             {
                 builder.Append(',');
-                builder.Append("chip=" + Chip);
+                builder.Append("chip");
+                builder.Append('=');
+                builder.Append(Architecture);
             }
             if (Language != null)
             {
                 builder.Append(',');
-                builder.Append("language=" + Language);
+                builder.Append("language");
+                builder.Append('=');
+                builder.Append(Language);
             }
 
             return builder.ToString();
@@ -129,8 +142,8 @@ namespace Community.VisualStudio.LayoutManager.Data
             get;
         }
 
-        /// <summary>Gets the package chip code.</summary>
-        public string Chip
+        /// <summary>Gets the package architecture code.</summary>
+        public string Architecture
         {
             get;
         }

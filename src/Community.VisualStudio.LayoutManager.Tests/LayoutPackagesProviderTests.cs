@@ -43,7 +43,7 @@ namespace Community.VisualStudio.LayoutManager.Tests
             Assert.NotNull(package);
             Assert.Equal("Anaconda2.Exe.x64", package.Id);
             Assert.Equal("5.0.0", package.Version);
-            Assert.Equal("x64", package.Chip);
+            Assert.Equal("x64", package.Architecture);
             Assert.Null(package.Language);
         }
 
@@ -65,7 +65,7 @@ namespace Community.VisualStudio.LayoutManager.Tests
             Assert.NotNull(package);
             Assert.Equal("Anaconda2.Exe.x64", package.Id);
             Assert.Equal("5.0.0", package.Version);
-            Assert.Equal("x64", package.Chip);
+            Assert.Equal("x64", package.Architecture);
             Assert.Null(package.Language);
         }
 

@@ -37,7 +37,7 @@ namespace Community.VisualStudio.LayoutManager.Engine
                 var package = new LayoutPackage(
                     catalog.Packages[i].Id,
                     catalog.Packages[i].Version,
-                    catalog.Packages[i].Chip,
+                    catalog.Packages[i].Architecture,
                     catalog.Packages[i].Language
                 );
 
@@ -99,7 +99,7 @@ namespace Community.VisualStudio.LayoutManager.Engine
             return localPackages.Except(catalogPackages)
                 .OrderBy(p => p.Id)
                 .ThenBy(p => p.Version)
-                .ThenBy(p => p.Chip)
+                .ThenBy(p => p.Architecture)
                 .ThenBy(p => p.Language)
                 .ToHashSet();
         }

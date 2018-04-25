@@ -26,9 +26,9 @@ namespace Community.VisualStudio.LayoutManager.Data
             set;
         }
 
-        /// <summary>Gets or sets the package chip code.</summary>
+        /// <summary>Gets or sets the package architecture code.</summary>
         [JsonProperty("chip")]
-        public string Chip
+        public string Architecture
         {
             get;
             set;
