@@ -1,42 +1,40 @@
 ﻿using BenchmarkDotNet.Attributes;
-using Community.VisualStudio.LayoutManager.Benchmarks.Framework;
 using Community.VisualStudio.LayoutManager.Data;
 
 namespace Community.AspNetCore.JsonRpc.Benchmarks.Suites
 {
-    [BenchmarkSuite(nameof(LayoutPackage))]
     public abstract class LayoutPackageBenchmarks
     {
         private static readonly LayoutPackage _package = new LayoutPackage("p", "v", "c", "l");
 
         [Benchmark(Description = "oto-str")]
-        public void ObjectToString()
+        public string ObjectToString()
         {
-            _package.ToString();
+            return _package.ToString();
         }
 
         [Benchmark(Description = "get-hsh")]
-        public void ObjectGetHashCode()
+        public int ObjectGetHashCode()
         {
-            _package.GetHashCode();
+            return _package.GetHashCode();
         }
 
         [Benchmark(Description = "equ-obj")]
-        public void ObjectEquals()
+        public bool ObjectEquals()
         {
-            _package.Equals((object)_package);
+            return _package.Equals((object)_package);
         }
 
         [Benchmark(Description = "equ-equ")]
-        public void EquitableEquals()
+        public bool EquitableEquals()
         {
-            _package.Equals(_package);
+            return _package.Equals(_package);
         }
 
         [Benchmark(Description = "get-dir")]
-        public void GetDirectoryName()
+        public string GetDirectoryName()
         {
-            _package.GetDirectoryName();
+            return _package.GetDirectoryName();
         }
     }
 }
