@@ -6,6 +6,11 @@ namespace Community.VisualStudio.LayoutManager.Data
     /// <summary>Represents layout package information.</summary>
     public sealed class LayoutPackage : IEquatable<LayoutPackage>
     {
+        private readonly string _id;
+        private readonly string _version;
+        private readonly string _architecture;
+        private readonly string _language;
+
         /// <summary>Initializes a new instance of the <see cref="LayoutPackage" /> class.</summary>
         /// <param name="id">The package identifier.</param>
         /// <param name="version">The package version.</param>
@@ -23,10 +28,10 @@ namespace Community.VisualStudio.LayoutManager.Data
                 throw new ArgumentNullException(nameof(version));
             }
 
-            Id = id;
-            Version = version;
-            Architecture = architecture;
-            Language = language;
+            _id = id;
+            _version = version;
+            _architecture = architecture;
+            _language = language;
         }
 
         /// <summary>Indicates whether the current <see cref="LayoutPackage" /> is equal to another <see cref="LayoutPackage" />.</summary>
@@ -40,10 +45,10 @@ namespace Community.VisualStudio.LayoutManager.Data
             }
 
             return
-                (string.Compare(Id, other.Id, StringComparison.InvariantCultureIgnoreCase) == 0) &&
-                (string.Compare(Version, other.Version, StringComparison.InvariantCultureIgnoreCase) == 0) &&
-                (string.Compare(Architecture, other.Architecture, StringComparison.InvariantCultureIgnoreCase) == 0) &&
-                (string.Compare(Language, other.Language, StringComparison.InvariantCultureIgnoreCase) == 0);
+                (string.Compare(_id, other._id, StringComparison.OrdinalIgnoreCase) == 0) &&
+                (string.Compare(_version, other._version, StringComparison.OrdinalIgnoreCase) == 0) &&
+                (string.Compare(_architecture, other._architecture, StringComparison.OrdinalIgnoreCase) == 0) &&
+                (string.Compare(_language, other._language, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
         /// <summary>Indicates whether the current <see cref="LayoutPackage" /> is equal to another object.</summary>
@@ -62,16 +67,16 @@ namespace Community.VisualStudio.LayoutManager.Data
             {
                 var result = (int)2166136261;
 
-                result = (result * 16777619) ^ Id.ToLowerInvariant().GetHashCode();
-                result = (result * 16777619) ^ Version.ToLowerInvariant().GetHashCode();
+                result = (result * 16777619) ^ _id.ToLowerInvariant().GetHashCode();
+                result = (result * 16777619) ^ _version.ToLowerInvariant().GetHashCode();
 
-                if (Architecture != null)
+                if (_architecture != null)
                 {
-                    result = (result * 16777619) ^ Architecture.ToLowerInvariant().GetHashCode();
+                    result = (result * 16777619) ^ _architecture.ToLowerInvariant().GetHashCode();
                 }
-                if (Language != null)
+                if (_language != null)
                 {
-                    result = (result * 16777619) ^ Language.ToLowerInvariant().GetHashCode();
+                    result = (result * 16777619) ^ _language.ToLowerInvariant().GetHashCode();
                 }
 
                 return result;
@@ -82,20 +87,20 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns>A string that represents the current <see cref="LayoutPackage" />.</returns>
         public override string ToString()
         {
-            var builder = new StringBuilder(Id);
+            var builder = new StringBuilder(_id);
 
             builder.Append('-');
-            builder.Append(Version);
+            builder.Append(_version);
 
-            if (Architecture != null)
+            if (_architecture != null)
             {
                 builder.Append('-');
-                builder.Append(Architecture);
+                builder.Append(_architecture);
             }
-            if (Language != null)
+            if (_language != null)
             {
                 builder.Append('-');
-                builder.Append(Language);
+                builder.Append(_language);
             }
 
             return builder.ToString();
@@ -105,26 +110,26 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns>The package directory name.</returns>
         public string GetDirectoryName()
         {
-            var builder = new StringBuilder(Id);
+            var builder = new StringBuilder(_id);
 
             builder.Append(',');
             builder.Append("version");
             builder.Append('=');
-            builder.Append(Version);
+            builder.Append(_version);
 
-            if (Architecture != null)
+            if (_architecture != null)
             {
                 builder.Append(',');
                 builder.Append("chip");
                 builder.Append('=');
-                builder.Append(Architecture);
+                builder.Append(_architecture);
             }
-            if (Language != null)
+            if (_language != null)
             {
                 builder.Append(',');
                 builder.Append("language");
                 builder.Append('=');
-                builder.Append(Language);
+                builder.Append(_language);
             }
 
             return builder.ToString();
@@ -133,25 +138,25 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <summary>Gets the package identifier.</summary>
         public string Id
         {
-            get;
+            get => _id;
         }
 
         /// <summary>Gets the package version.</summary>
         public string Version
         {
-            get;
+            get => _version;
         }
 
         /// <summary>Gets the package architecture code.</summary>
         public string Architecture
         {
-            get;
+            get => _architecture;
         }
 
         /// <summary>Gets the package language code.</summary>
         public string Language
         {
-            get;
+            get => _language;
         }
     }
 }

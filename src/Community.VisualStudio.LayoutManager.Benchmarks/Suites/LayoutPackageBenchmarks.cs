@@ -7,31 +7,25 @@ namespace Community.AspNetCore.JsonRpc.Benchmarks.Suites
     {
         private static readonly LayoutPackage _package = new LayoutPackage("p", "v", "c", "l");
 
-        [Benchmark(Description = "oto-str")]
+        [Benchmark]
         public string ObjectToString()
         {
             return _package.ToString();
         }
 
-        [Benchmark(Description = "get-hsh")]
+        [Benchmark]
         public int ObjectGetHashCode()
         {
             return _package.GetHashCode();
         }
 
-        [Benchmark(Description = "equ-obj")]
-        public bool ObjectEquals()
-        {
-            return _package.Equals((object)_package);
-        }
-
-        [Benchmark(Description = "equ-equ")]
+        [Benchmark]
         public bool EquitableEquals()
         {
             return _package.Equals(_package);
         }
 
-        [Benchmark(Description = "get-dir")]
+        [Benchmark]
         public string GetDirectoryName()
         {
             return _package.GetDirectoryName();
