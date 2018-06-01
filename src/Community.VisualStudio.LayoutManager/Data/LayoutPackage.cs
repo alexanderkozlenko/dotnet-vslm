@@ -63,24 +63,11 @@ namespace Community.VisualStudio.LayoutManager.Data
         /// <returns>A hash code for the current <see cref="LayoutPackage" />.</returns>
         public override int GetHashCode()
         {
-            unchecked
-            {
-                var result = (int)2166136261;
-
-                result = (result * 16777619) ^ _id.ToLowerInvariant().GetHashCode();
-                result = (result * 16777619) ^ _version.ToLowerInvariant().GetHashCode();
-
-                if (_architecture != null)
-                {
-                    result = (result * 16777619) ^ _architecture.ToLowerInvariant().GetHashCode();
-                }
-                if (_language != null)
-                {
-                    result = (result * 16777619) ^ _language.ToLowerInvariant().GetHashCode();
-                }
-
-                return result;
-            }
+            return HashCode.Combine(
+                _id.ToLowerInvariant(),
+                _version.ToLowerInvariant(),
+                _architecture?.ToLowerInvariant(),
+                _language?.ToLowerInvariant());
         }
 
         /// <summary>Returns a string that represents the current <see cref="LayoutPackage" />.</summary>
