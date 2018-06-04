@@ -1,4 +1,4 @@
-## Visual Studio Layout Manager
+## Visual Studio 2017 Layout Manager
 
 A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2017 installation layout packages. 
 
