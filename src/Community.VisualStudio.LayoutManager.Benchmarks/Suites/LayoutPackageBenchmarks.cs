@@ -24,11 +24,5 @@ namespace Community.AspNetCore.JsonRpc.Benchmarks.Suites
         {
             return _package.Equals(_package);
         }
-
-        [Benchmark]
-        public string GetDirectoryName()
-        {
-            return _package.GetDirectoryName();
-        }
     }
 }

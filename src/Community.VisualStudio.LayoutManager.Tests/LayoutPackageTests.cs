@@ -23,16 +23,16 @@ namespace Community.VisualStudio.LayoutManager.Tests
         [Fact]
         public void ObjectToString()
         {
-            Assert.Equal("package-1.0.0",
-                new LayoutPackage("package", "1.0.0", null, null)
-                    .ToString());
-            Assert.Equal("package-1.0.0-neutral",
+            Assert.Equal("package,version=1.0.0",
+               new LayoutPackage("package", "1.0.0", null, null)
+                   .ToString());
+            Assert.Equal("package,version=1.0.0,chip=neutral",
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .ToString());
-            Assert.Equal("package-1.0.0-en-US",
+            Assert.Equal("package,version=1.0.0,language=en-US",
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .ToString());
-            Assert.Equal("package-1.0.0-neutral-en-US",
+            Assert.Equal("package,version=1.0.0,chip=neutral,language=en-US",
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")
                     .ToString());
         }
@@ -145,23 +145,6 @@ namespace Community.VisualStudio.LayoutManager.Tests
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .Equals(
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
-        }
-
-        [Fact]
-        public void GetDirectoryName()
-        {
-            Assert.Equal("package,version=1.0.0",
-                new LayoutPackage("package", "1.0.0", null, null)
-                    .GetDirectoryName());
-            Assert.Equal("package,version=1.0.0,chip=neutral",
-                new LayoutPackage("package", "1.0.0", "neutral", null)
-                    .GetDirectoryName());
-            Assert.Equal("package,version=1.0.0,language=en-US",
-                new LayoutPackage("package", "1.0.0", null, "en-US")
-                    .GetDirectoryName());
-            Assert.Equal("package,version=1.0.0,chip=neutral,language=en-US",
-                new LayoutPackage("package", "1.0.0", "neutral", "en-US")
-                    .GetDirectoryName());
         }
     }
 }

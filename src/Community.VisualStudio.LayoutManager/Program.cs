@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Text;
 using Community.VisualStudio.LayoutManager.Engine;
 using Community.VisualStudio.LayoutManager.Resources;
-using Microsoft.Extensions.Configuration;
 
 namespace Community.VisualStudio.LayoutManager
 {
@@ -19,16 +18,10 @@ namespace Community.VisualStudio.LayoutManager
             Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright?.Replace("\u00A9", "(c)"));
             Console.WriteLine();
 
-            var configurationBuilder = new ConfigurationBuilder().AddCommandLine(args);
-
             try
             {
-                var configuration = configurationBuilder.Build();
-                var layoutPath = configuration["layout"] ?? Environment.CurrentDirectory;
-                var command = configuration["command"] ?? "list";
-
-                Console.WriteLine(Strings.GetString("program.layout_info"), layoutPath);
-                Console.WriteLine();
+                var command = args.Length > 0 ? args[0].ToLowerInvariant() : "list";
+                var layoutPath = args.Length > 1 ? args[1] : Environment.CurrentDirectory;
 
                 var provider = new LayoutPackagesProvider();
 
@@ -44,7 +37,7 @@ namespace Community.VisualStudio.LayoutManager
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageLocation = Path.Combine(layoutPath, package.GetDirectoryName());
+                                var packageLocation = Path.Combine(layoutPath, package.ToString());
                                 var packageSize = new DirectoryInfo(packageLocation).GetSize();
 
                                 totalSize += packageSize;
@@ -65,7 +58,7 @@ namespace Community.VisualStudio.LayoutManager
 
                             foreach (var package in obsoletePackages)
                             {
-                                var packageLocation = Path.Combine(layoutPath, package.GetDirectoryName());
+                                var packageLocation = Path.Combine(layoutPath, package.ToString());
                                 var packageSize = new DirectoryInfo(packageLocation).GetSize();
 
                                 totalSize += packageSize;
@@ -97,7 +90,7 @@ namespace Community.VisualStudio.LayoutManager
                 Console.Error.WriteLine(Strings.GetString("program.error_message"), ex.Message);
                 Console.ForegroundColor = foregroundColor;
                 Console.WriteLine();
-                Console.WriteLine(Strings.GetString("program.usage_message"), Path.GetFileName(assembly.Location));
+                Console.WriteLine(Strings.GetString("program.usage_message"), assembly.GetName().Name);
                 Console.WriteLine();
                 Console.WriteLine(Strings.GetString("program.usage_commands"));
                 Console.WriteLine();

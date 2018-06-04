@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="command.clean.package_info" xml:space="preserve">
-    <value>Removed {0} ({1:N0} bytes)</value>
+    <value>- "{0}" ({1:N0} bytes)</value>
   </data>
   <data name="command.clean.summary_message" xml:space="preserve">
     <value>Summary: removed {0} obsolete package(s) ({1:N0} bytes)</value>
   </data>
   <data name="command.reveal.package_info" xml:space="preserve">
-    <value>Found {0} ({1:N0} bytes)</value>
+    <value>- "{0}" ({1:N0} bytes)</value>
   </data>
   <data name="command.reveal.summary_message" xml:space="preserve">
     <value>Summary: found {0} obsolete package(s) ({1:N0} bytes)</value>
@@ -138,19 +138,16 @@
   <data name="program.invalid_parameter" xml:space="preserve">
     <value>The "{0}" parameter is invalid</value>
   </data>
-  <data name="program.layout_info" xml:space="preserve">
-    <value>Working with layout "{0}"</value>
-  </data>
   <data name="program.usage_commands" xml:space="preserve">
     <value>Commands:</value>
   </data>
   <data name="program.usage_command_clean" xml:space="preserve">
-    <value>  clean&#x9;Remove obsolete packages from the layout</value>
+    <value>  clean	Remove obsolete packages from the layout</value>
   </data>
   <data name="program.usage_command_list" xml:space="preserve">
-    <value>  list&#x9;Display obsolete packages from the layout (default command)</value>
+    <value>  list	Display obsolete packages from the layout (default command)</value>
   </data>
   <data name="program.usage_message" xml:space="preserve">
-    <value>Usage: dotnet {0} [--layout &lt;value&gt;] [--command &lt;value&gt;]</value>
+    <value>Usage: dotnet {0} [command] [layout]</value>
   </data>
 </root>

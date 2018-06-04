@@ -76,29 +76,6 @@ namespace Community.VisualStudio.LayoutManager.Data
         {
             var builder = new StringBuilder(_id);
 
-            builder.Append('-');
-            builder.Append(_version);
-
-            if (_architecture != null)
-            {
-                builder.Append('-');
-                builder.Append(_architecture);
-            }
-            if (_language != null)
-            {
-                builder.Append('-');
-                builder.Append(_language);
-            }
-
-            return builder.ToString();
-        }
-
-        /// <summary>Gets the package directory name.</summary>
-        /// <returns>The package directory name.</returns>
-        public string GetDirectoryName()
-        {
-            var builder = new StringBuilder(_id);
-
             builder.Append(',');
             builder.Append("version");
             builder.Append('=');

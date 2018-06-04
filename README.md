@@ -1,15 +1,17 @@
 ## Visual Studio Layout Manager
 
-A tool for dealing with obsolete packages from the Visual Studio 2017 installation layout. 
+A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2017 installation layout packages. 
+
+[![NuGet package](https://img.shields.io/nuget/v/Community.VisualStudio.LayoutManager.svg?style=flat-square)](https://www.nuget.org/packages/Community.VisualStudio.LayoutManager)
 
 ```
-dotnet vslm.dll [--layout <value>] [--command <value>]
+dotnet vslm [command] [layout] 
 ```
 
 Parameter | Default Value | Purpose
 --- | --- | ---
-`--layout` | `.\` | The layout directory
-`--command` | `list` | The command to execute
+`command` | | The command to execute
+`layout` | `.\` | The layout directory
 
 Command | Purpose
 --- | ---
@@ -24,19 +26,18 @@ Command | Purpose
 ### Examples
 
 ```
-dotnet vslm.dll --layout \\server\vs2017\
+dotnet tool install --global dotnet-vslm
 ```
 ```
-Visual Studio Layout Manager version 1.0.0
+dotnet vslm list \\server\vs2017\
+```
+```
+Visual Studio 2017 Layout Manager version 1.0.0
 
 Working with layout "\\server\vs2017\"
 
-Found Anaconda2.Exe.x64 5.0.0 x64 (522,426,032 bytes)
-Found Anaconda2.Exe.x86 5.0.0 (421,720,568 bytes)
-Found Anaconda3.Exe.x64 5.0.0 x64 (534,742,736 bytes)
-Found Anaconda3.Exe.x86 5.0.0 (436,033,392 bytes)
+- "Package1,version=1.0.0,chip=x64" (426,032 bytes)
+- "Package1,version=1.0.0,chip=x86" (720,568 bytes)
 
-Summary: found 4 obsolete package(s) (1,914,922,728 bytes)
+Summary: found 2 obsolete package(s) (1,146,600 bytes)
 ```
-
-[![Latest release](https://img.shields.io/github/release/alexanderkozlenko/vs-layout-manager.svg?style=flat-square)](https://github.com/alexanderkozlenko/vs-layout-manager/releases)

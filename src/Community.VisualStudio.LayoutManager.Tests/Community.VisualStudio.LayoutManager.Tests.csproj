@@ -1,17 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <OutputPath>$(RepositoryPath)/bin/bin/$(AssemblyName)/$(Configuration)/</OutputPath>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputPath>$(RepositoryPath)\bin\bin\$(AssemblyName)\$(Configuration)\</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="./Assets/**/*" />
+    <EmbeddedResource Include=".\Assets\**\*" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../Community.VisualStudio.LayoutManager/Community.VisualStudio.LayoutManager.csproj" />
+    <ProjectReference Include="..\Community.VisualStudio.LayoutManager\Community.VisualStudio.LayoutManager.csproj" />
   </ItemGroup>
 </Project>

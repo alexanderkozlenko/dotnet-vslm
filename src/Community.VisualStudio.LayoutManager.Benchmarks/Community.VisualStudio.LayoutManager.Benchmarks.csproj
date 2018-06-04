@@ -2,17 +2,18 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <IsPackable>False</IsPackable>
-    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <IsPackable>false</IsPackable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.10.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="./Assets/**/*" />
+    <EmbeddedResource Include=".\Assets\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../Community.VisualStudio.LayoutManager/Community.VisualStudio.LayoutManager.csproj" />
+    <ProjectReference Include="..\Community.VisualStudio.LayoutManager\Community.VisualStudio.LayoutManager.csproj" />
   </ItemGroup>
 </Project>
