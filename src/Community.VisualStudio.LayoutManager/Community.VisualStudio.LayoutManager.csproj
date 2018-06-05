@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2017 installation layout packages]]></Description>
     <Authors><![CDATA[Alexander Kozlenko]]></Authors>
     <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>

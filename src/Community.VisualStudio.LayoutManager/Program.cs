@@ -90,7 +90,7 @@ namespace Community.VisualStudio.LayoutManager
                 Console.Error.WriteLine(Strings.GetString("program.error_message"), ex.Message);
                 Console.ForegroundColor = foregroundColor;
                 Console.WriteLine();
-                Console.WriteLine(Strings.GetString("program.usage_message"), assembly.GetName().Name);
+                Console.WriteLine(Strings.GetString("program.usage_message"));
                 Console.WriteLine();
                 Console.WriteLine(Strings.GetString("program.usage_commands"));
                 Console.WriteLine();
