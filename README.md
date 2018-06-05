@@ -10,7 +10,7 @@ dotnet vslm [command] [layout]
 
 Parameter | Default Value | Purpose
 --- | --- | ---
-`command` | | The command to execute
+`command` | `list` | The command to execute
 `layout` | `.\` | The layout directory
 
 Command | Purpose
