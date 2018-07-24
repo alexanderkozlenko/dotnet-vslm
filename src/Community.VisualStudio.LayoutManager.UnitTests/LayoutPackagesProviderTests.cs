@@ -2,32 +2,33 @@
 using System.Linq;
 using Community.VisualStudio.LayoutManager.Data;
 using Community.VisualStudio.LayoutManager.Engine;
-using Community.VisualStudio.LayoutManager.Tests.Resources;
-using Xunit;
+using Community.VisualStudio.LayoutManager.UnitTests.Resources;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Community.VisualStudio.LayoutManager.Tests
+namespace Community.VisualStudio.LayoutManager.UnitTests
 {
+    [TestClass]
     public sealed class LayoutPackagesProviderTests
     {
-        [Fact]
+        [TestMethod]
         public void GetCatalogPackagesWhenJsonIsNull()
         {
             var provider = new LayoutPackagesProvider();
 
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 provider.GetCatalogPackages(null));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetLocalPackagesWhenDirectoriesIsNull()
         {
             var provider = new LayoutPackagesProvider();
 
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 provider.GetLocalPackages(null));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetCatalogPackages()
         {
             var json = EmbeddedResourceManager.GetString("Assets.Catalog.json");
@@ -35,19 +36,19 @@ namespace Community.VisualStudio.LayoutManager.Tests
 
             var packages = provider.GetCatalogPackages(json);
 
-            Assert.NotNull(packages);
-            Assert.Equal(2, packages.Count);
+            Assert.IsNotNull(packages);
+            Assert.AreEqual(2, packages.Count);
 
             var package = packages.First();
 
-            Assert.NotNull(package);
-            Assert.Equal("Anaconda2.Exe.x64", package.Id);
-            Assert.Equal("5.0.0", package.Version);
-            Assert.Equal("x64", package.Architecture);
-            Assert.Null(package.Language);
+            Assert.IsNotNull(package);
+            Assert.AreEqual("Anaconda2.Exe.x64", package.Id);
+            Assert.AreEqual("5.0.0", package.Version);
+            Assert.AreEqual("x64", package.Architecture);
+            Assert.IsNull(package.Language);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetLocalPackages()
         {
             var directories = EmbeddedResourceManager.GetString("Assets.Catalog.log")
@@ -57,39 +58,39 @@ namespace Community.VisualStudio.LayoutManager.Tests
 
             var packages = provider.GetLocalPackages(directories);
 
-            Assert.NotNull(packages);
-            Assert.Equal(2, packages.Count);
+            Assert.IsNotNull(packages);
+            Assert.AreEqual(2, packages.Count);
 
             var package = packages.First();
 
-            Assert.NotNull(package);
-            Assert.Equal("Anaconda2.Exe.x64", package.Id);
-            Assert.Equal("5.0.0", package.Version);
-            Assert.Equal("x64", package.Architecture);
-            Assert.Null(package.Language);
+            Assert.IsNotNull(package);
+            Assert.AreEqual("Anaconda2.Exe.x64", package.Id);
+            Assert.AreEqual("5.0.0", package.Version);
+            Assert.AreEqual("x64", package.Architecture);
+            Assert.IsNull(package.Language);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetObsoletePackagesWhenCatalogPackagesIsNull()
         {
             var provider = new LayoutPackagesProvider();
             var localPackages = new LayoutPackage[] { };
 
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 provider.GetObsoletePackages(null, localPackages));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetObsoletePackagesWhenLocalPackagesIsNull()
         {
             var provider = new LayoutPackagesProvider();
             var catalogPackages = new LayoutPackage[] { };
 
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 provider.GetObsoletePackages(catalogPackages, null));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetObsoletePackages()
         {
             var provider = new LayoutPackagesProvider();
@@ -109,10 +110,10 @@ namespace Community.VisualStudio.LayoutManager.Tests
 
             var obsoletePackages = provider.GetObsoletePackages(catalogPackages, localPackages);
 
-            Assert.NotNull(obsoletePackages);
-            Assert.Equal(2, obsoletePackages.Count);
-            Assert.Equal(new LayoutPackage("package_1", "1.0.0", null, null), obsoletePackages.Skip(0).First());
-            Assert.Equal(new LayoutPackage("package_2", "1.0.0", null, null), obsoletePackages.Skip(1).First());
+            Assert.IsNotNull(obsoletePackages);
+            Assert.AreEqual(2, obsoletePackages.Count);
+            Assert.AreEqual(new LayoutPackage("package_1", "1.0.0", null, null), obsoletePackages.Skip(0).First());
+            Assert.AreEqual(new LayoutPackage("package_2", "1.0.0", null, null), obsoletePackages.Skip(1).First());
         }
     }
 }

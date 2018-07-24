@@ -1,10 +1,12 @@
-﻿using System;
+﻿// © Alexander Kozlenko. Licensed under the MIT License.
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace Community.VisualStudio.LayoutManager.Tests.Resources
+namespace Community.VisualStudio.LayoutManager.UnitTests.Resources
 {
     [DebuggerStepThrough]
     internal static class EmbeddedResourceManager
@@ -23,7 +25,7 @@ namespace Community.VisualStudio.LayoutManager.Tests.Resources
             {
                 if (resourceStream == null)
                 {
-                    throw new InvalidOperationException(FormattableString.Invariant($"The specified resource \"{name}\" is not found"));
+                    throw new InvalidOperationException($"The resource \"{name}\" was not found");
                 }
 
                 using (var bufferStream = new MemoryStream((int)resourceStream.Length))

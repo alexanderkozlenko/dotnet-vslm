@@ -18,12 +18,12 @@ Command | Purpose
 `list` | Display obsolete packages from the layout
 `clean` | Remove obsolete packages from the layout
 
-### Specifics
+### Characteristics
 
 - Each directory in the layout that matches the package directory pattern is considered as a package directory.
-- Each local package which is not listed in the `Catalog.json` is considered as obsolete package.
+- Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
 
-### Examples
+### Usage Examples
 
 ```
 dotnet tool install --global dotnet-vslm

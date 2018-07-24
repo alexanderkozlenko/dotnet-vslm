@@ -3,10 +3,12 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Horology;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-using Community.AspNetCore.JsonRpc.Benchmarks.Suites;
+using BenchmarkDotNet.Toolchains.InProcess;
+using Community.AspNetCore.JsonRpc.Benchmarks.TestSuites;
 using Community.VisualStudio.LayoutManager.Benchmarks.Framework;
 
 namespace Community.VisualStudio.LayoutManager.Benchmarks
@@ -17,10 +19,11 @@ namespace Community.VisualStudio.LayoutManager.Benchmarks
         {
             var configuration = ManualConfig.CreateEmpty();
 
-            configuration.Add(new SimpleBenchmarkExporter());
+            configuration.Add(Job.Default.With(InProcessToolchain.Instance));
             configuration.Add(MemoryDiagnoser.Default);
-            configuration.Add(ConsoleLogger.Default);
             configuration.Add(DefaultConfig.Instance.GetColumnProviders().ToArray());
+            configuration.Add(ConsoleLogger.Default);
+            configuration.Add(new SimpleBenchmarkExporter());
             configuration.Set(SummaryStyle.Default.WithTimeUnit(TimeUnit.Nanosecond).WithSizeUnit(SizeUnit.B));
 
             BenchmarkRunner.Run<LayoutPackageBenchmarks>(configuration);

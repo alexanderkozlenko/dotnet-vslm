@@ -1,0 +1,12 @@
+﻿<Project>
+  <PropertyGroup>
+    <Version>1.1.1</Version>
+    <Product><![CDATA[Visual Studio 2017 Layout Manager]]></Product>
+    <PackageProjectUrl>https://github.com/alexanderkozlenko/dotnet-vslm</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.github.com/alexanderkozlenko/dotnet-vslm/master/LICENSE</PackageLicenseUrl>
+    <Authors><![CDATA[Alexander Kozlenko]]></Authors>
+    <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>
+    <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2017 installation layout packages]]></Description>
+    <PackageTags><![CDATA[visual studio installation layout]]></PackageTags>
+  </PropertyGroup>
+</Project>

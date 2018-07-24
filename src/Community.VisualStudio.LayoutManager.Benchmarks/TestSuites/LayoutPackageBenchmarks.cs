@@ -1,9 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Community.VisualStudio.LayoutManager.Data;
 
-namespace Community.AspNetCore.JsonRpc.Benchmarks.Suites
+namespace Community.AspNetCore.JsonRpc.Benchmarks.TestSuites
 {
-    public abstract class LayoutPackageBenchmarks
+    public sealed class LayoutPackageBenchmarks
     {
         private static readonly LayoutPackage _package = new LayoutPackage("p", "v", "c", "l");
 

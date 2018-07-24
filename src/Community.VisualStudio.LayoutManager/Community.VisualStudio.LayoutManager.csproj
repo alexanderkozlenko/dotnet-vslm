@@ -1,29 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).Package.props" />
   <PropertyGroup>
-    <Version>1.1.1</Version>
-    <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2017 installation layout packages]]></Description>
-    <Authors><![CDATA[Alexander Kozlenko]]></Authors>
-    <Copyright><![CDATA[© Alexander Kozlenko. All rights reserved.]]></Copyright>
-    <PackageTags><![CDATA[visual studio installation layout]]></PackageTags>
-    <PackageProjectUrl>https://github.com/alexanderkozlenko/dotnet-vslm</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.github.com/alexanderkozlenko/dotnet-vslm/master/LICENSE</PackageLicenseUrl>
-    <PackageId>dotnet-vslm</PackageId>
-    <Product><![CDATA[Visual Studio 2017 Layout Manager]]></Product>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputType>Exe</OutputType>
     <NoWin32Manifest>true</NoWin32Manifest>
-    <OutputPath>$(RepositoryPath)\bin\bin\$(AssemblyName)\$(Configuration)\</OutputPath>
     <ApplicationIcon />
     <StartupObject />
     <PackAsTool>true</PackAsTool>
+    <PackageId>dotnet-vslm</PackageId>
     <ToolCommandName>dotnet-vslm</ToolCommandName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
+  <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).Package.targets" />
 </Project>

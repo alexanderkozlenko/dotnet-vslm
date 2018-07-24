@@ -1,4 +1,6 @@
-﻿namespace System.IO
+﻿// © Alexander Kozlenko. Licensed under the MIT License.
+
+namespace System.IO
 {
     /// <summary>Defines extension methods for the <see cref="DirectoryInfo" /> type.</summary>
     internal static class DirectoryInfoExtensions

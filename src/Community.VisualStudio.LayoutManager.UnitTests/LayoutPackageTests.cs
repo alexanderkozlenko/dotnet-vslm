@@ -1,147 +1,148 @@
 ﻿using System;
 using Community.VisualStudio.LayoutManager.Data;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Community.VisualStudio.LayoutManager.Tests
+namespace Community.VisualStudio.LayoutManager.UnitTests
 {
+    [TestClass]
     public sealed class LayoutPackageTests
     {
-        [Fact]
+        [TestMethod]
         public void ConstructorWhenIdIsNull()
         {
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 new LayoutPackage(null, "1.0.0", null, null));
         }
 
-        [Fact]
+        [TestMethod]
         public void ConstructorWhenVersionIsNull()
         {
-            Assert.Throws<ArgumentNullException>(() =>
+            Assert.ThrowsException<ArgumentNullException>(() =>
                 new LayoutPackage("package", null, null, null));
         }
 
-        [Fact]
+        [TestMethod]
         public void ObjectToString()
         {
-            Assert.Equal("package,version=1.0.0",
+            Assert.AreEqual("package,version=1.0.0",
                new LayoutPackage("package", "1.0.0", null, null)
                    .ToString());
-            Assert.Equal("package,version=1.0.0,chip=neutral",
+            Assert.AreEqual("package,version=1.0.0,chip=neutral",
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .ToString());
-            Assert.Equal("package,version=1.0.0,language=en-US",
+            Assert.AreEqual("package,version=1.0.0,language=en-US",
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .ToString());
-            Assert.Equal("package,version=1.0.0,chip=neutral,language=en-US",
+            Assert.AreEqual("package,version=1.0.0,chip=neutral,language=en-US",
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")
                     .ToString());
         }
 
-        [Fact]
+        [TestMethod]
         public void ObjectGetHashCode()
         {
-            Assert.Equal(
+            Assert.AreEqual(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .GetHashCode(),
                 new LayoutPackage("Package", "1.0.0", null, null)
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")
                     .GetHashCode());
-            Assert.NotEqual(
+            Assert.AreNotEqual(
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .GetHashCode(),
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")
                     .GetHashCode());
         }
 
-        [Fact]
+        [TestMethod]
         public void ObjectEquals()
         {
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 (object)null));
-            Assert.True(
+            Assert.IsTrue(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 (object)new LayoutPackage("Package", "1.0.0", null, null)));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", "neutral", null)));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", null, "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", null, "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .Equals(
                 (object)new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
         }
 
-        [Fact]
+        [TestMethod]
         public void EquatableEquals()
         {
-            Assert.True(
+            Assert.IsTrue(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 new LayoutPackage("Package", "1.0.0", null, null)));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 new LayoutPackage("package", "1.0.0", "neutral", null)));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 new LayoutPackage("package", "1.0.0", null, "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .Equals(
                 new LayoutPackage("package", "1.0.0", null, "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", "neutral", null)
                     .Equals(
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
-            Assert.False(
+            Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, "en-US")
                     .Equals(
                 new LayoutPackage("package", "1.0.0", "neutral", "en-US")));
