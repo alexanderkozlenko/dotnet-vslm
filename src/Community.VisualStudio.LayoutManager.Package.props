@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <Product><![CDATA[Visual Studio 2017 Layout Manager]]></Product>
     <PackageProjectUrl>https://github.com/alexanderkozlenko/dotnet-vslm</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.github.com/alexanderkozlenko/dotnet-vslm/master/LICENSE</PackageLicenseUrl>
