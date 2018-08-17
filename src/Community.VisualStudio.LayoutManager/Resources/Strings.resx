@@ -142,10 +142,10 @@
     <value>Commands:</value>
   </data>
   <data name="program.usage_command_clean" xml:space="preserve">
-    <value>  clean	Remove obsolete packages from the layout</value>
+    <value>  --clean	Remove obsolete packages from the layout</value>
   </data>
   <data name="program.usage_command_list" xml:space="preserve">
-    <value>  list	Display obsolete packages from the layout (default command)</value>
+    <value>  --list	Display obsolete packages from the layout (default command)</value>
   </data>
   <data name="program.usage_message" xml:space="preserve">
     <value>Usage: dotnet vslm [command] [layout]</value>

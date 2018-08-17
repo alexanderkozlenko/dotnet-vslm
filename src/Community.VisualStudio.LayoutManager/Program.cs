@@ -22,7 +22,7 @@ namespace Community.VisualStudio.LayoutManager
 
             try
             {
-                var command = args.Length > 0 ? args[0].ToLowerInvariant() : "list";
+                var command = args.Length > 0 ? args[0].ToLowerInvariant() : "--list";
                 var layoutPath = args.Length > 1 ? args[1] : Environment.CurrentDirectory;
 
                 var provider = new LayoutPackagesProvider();
@@ -33,7 +33,7 @@ namespace Community.VisualStudio.LayoutManager
 
                 switch (command)
                 {
-                    case "list":
+                    case "--list":
                         {
                             var totalSize = 0L;
 
@@ -54,7 +54,7 @@ namespace Community.VisualStudio.LayoutManager
                             Console.WriteLine(Strings.GetString("command.reveal.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
-                    case "clean":
+                    case "--clean":
                         {
                             var totalSize = 0L;
 
