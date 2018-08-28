@@ -10,13 +10,13 @@ dotnet vslm [command] [layout]
 
 Parameter | Default Value | Purpose
 --- | --- | ---
-`command` | `list` | The command to execute
+`command` | `--list` | The command to execute
 `layout` | `.\` | The layout directory
 
 Command | Purpose
 --- | ---
-`list` | Display obsolete packages from the layout
-`clean` | Remove obsolete packages from the layout
+`--list` | Display obsolete packages from the layout
+`--clean` | Remove obsolete packages from the layout
 
 ### Characteristics
 
@@ -29,7 +29,7 @@ Command | Purpose
 dotnet tool install --global dotnet-vslm
 ```
 ```
-dotnet vslm list \\server\vs2017\
+dotnet vslm --list \\server\vs2017\
 ```
 ```
 Visual Studio 2017 Layout Manager version 1.0.0
