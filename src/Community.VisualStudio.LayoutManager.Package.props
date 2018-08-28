@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
     <Product><![CDATA[Visual Studio 2017 Layout Manager]]></Product>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/alexanderkozlenko/dotnet-vslm.git</RepositoryUrl>
