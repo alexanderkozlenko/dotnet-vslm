@@ -2,7 +2,7 @@
 
 using System.Resources;
 
-namespace Community.VisualStudio.LayoutManager.Resources
+namespace Anemonis.VisualStudio.LayoutManager.Resources
 {
     /// <summary>Represents a strings resource manager.</summary>
     internal static class Strings

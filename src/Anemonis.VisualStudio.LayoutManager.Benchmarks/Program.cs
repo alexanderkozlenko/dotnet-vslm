@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Anemonis.AspNetCore.JsonRpc.Benchmarks.TestSuites;
+using Anemonis.VisualStudio.LayoutManager.Benchmarks.Framework;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
@@ -8,10 +10,8 @@ using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNet.Toolchains.InProcess;
-using Community.AspNetCore.JsonRpc.Benchmarks.TestSuites;
-using Community.VisualStudio.LayoutManager.Benchmarks.Framework;
 
-namespace Community.VisualStudio.LayoutManager.Benchmarks
+namespace Anemonis.VisualStudio.LayoutManager.Benchmarks
 {
     public static class Program
     {

@@ -5,7 +5,7 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Reports;
 
-namespace Community.VisualStudio.LayoutManager.Benchmarks.Framework
+namespace Anemonis.VisualStudio.LayoutManager.Benchmarks.Framework
 {
     internal sealed class SimpleBenchmarkExporter : ExporterBase
     {

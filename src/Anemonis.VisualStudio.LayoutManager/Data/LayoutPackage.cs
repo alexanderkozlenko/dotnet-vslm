@@ -3,7 +3,7 @@
 using System;
 using System.Text;
 
-namespace Community.VisualStudio.LayoutManager.Data
+namespace Anemonis.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents layout package information.</summary>
     public sealed class LayoutPackage : IEquatable<LayoutPackage>

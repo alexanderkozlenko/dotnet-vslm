@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace Community.VisualStudio.LayoutManager.Data
+namespace Anemonis.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents layout catalog information in JSON.</summary>
     internal sealed class JsonLayoutCatalog

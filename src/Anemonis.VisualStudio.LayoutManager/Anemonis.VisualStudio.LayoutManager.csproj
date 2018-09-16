@@ -1,22 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).Package.props" />
+  <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).props" />
   <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <NoWin32Manifest>true</NoWin32Manifest>
     <ApplicationIcon />
     <StartupObject />
-    <IsPackable>true</IsPackable>
-    <PackAsTool>true</PackAsTool>
-    <PackageId>dotnet-vslm</PackageId>
-    <ToolCommandName>dotnet-vslm</ToolCommandName>
-    <TieredCompilation>true</TieredCompilation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
-  <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).Package.targets" />
 </Project>

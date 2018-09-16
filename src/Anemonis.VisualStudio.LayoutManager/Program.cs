@@ -5,10 +5,10 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using Community.VisualStudio.LayoutManager.Engine;
-using Community.VisualStudio.LayoutManager.Resources;
+using Anemonis.VisualStudio.LayoutManager.Engine;
+using Anemonis.VisualStudio.LayoutManager.Resources;
 
-namespace Community.VisualStudio.LayoutManager
+namespace Anemonis.VisualStudio.LayoutManager
 {
     public static class Program
     {

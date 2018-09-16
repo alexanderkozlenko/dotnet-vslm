@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Community.VisualStudio.LayoutManager.Data;
-using Community.VisualStudio.LayoutManager.Engine;
-using Community.VisualStudio.LayoutManager.UnitTests.Resources;
+using Anemonis.VisualStudio.LayoutManager.Data;
+using Anemonis.VisualStudio.LayoutManager.Engine;
+using Anemonis.VisualStudio.LayoutManager.UnitTests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Community.VisualStudio.LayoutManager.UnitTests
+namespace Anemonis.VisualStudio.LayoutManager.UnitTests
 {
     [TestClass]
     public sealed class LayoutPackagesProviderTests

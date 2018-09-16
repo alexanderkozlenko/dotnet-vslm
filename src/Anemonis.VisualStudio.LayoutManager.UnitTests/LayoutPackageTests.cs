@@ -1,8 +1,8 @@
 ﻿using System;
-using Community.VisualStudio.LayoutManager.Data;
+using Anemonis.VisualStudio.LayoutManager.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Community.VisualStudio.LayoutManager.UnitTests
+namespace Anemonis.VisualStudio.LayoutManager.UnitTests
 {
     [TestClass]
     public sealed class LayoutPackageTests

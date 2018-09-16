@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Community.VisualStudio.LayoutManager.Data;
+using Anemonis.VisualStudio.LayoutManager.Data;
 using Newtonsoft.Json;
 
-namespace Community.VisualStudio.LayoutManager.Engine
+namespace Anemonis.VisualStudio.LayoutManager.Engine
 {
     /// <summary>Represents the layout packages provider.</summary>
     public sealed class LayoutPackagesProvider

@@ -1,7 +1,7 @@
-﻿using BenchmarkDotNet.Attributes;
-using Community.VisualStudio.LayoutManager.Data;
+﻿using Anemonis.VisualStudio.LayoutManager.Data;
+using BenchmarkDotNet.Attributes;
 
-namespace Community.AspNetCore.JsonRpc.Benchmarks.TestSuites
+namespace Anemonis.AspNetCore.JsonRpc.Benchmarks.TestSuites
 {
     public sealed class LayoutPackageBenchmarks
     {

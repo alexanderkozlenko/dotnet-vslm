@@ -3,16 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.LayoutManager", "Community.VisualStudio.LayoutManager\Community.VisualStudio.LayoutManager.csproj", "{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager", "Anemonis.VisualStudio.LayoutManager\Anemonis.VisualStudio.LayoutManager.csproj", "{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.LayoutManager.UnitTests", "Community.VisualStudio.LayoutManager.UnitTests\Community.VisualStudio.LayoutManager.UnitTests.csproj", "{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager.UnitTests", "Anemonis.VisualStudio.LayoutManager.UnitTests\Anemonis.VisualStudio.LayoutManager.UnitTests.csproj", "{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.VisualStudio.LayoutManager.Benchmarks", "Community.VisualStudio.LayoutManager.Benchmarks\Community.VisualStudio.LayoutManager.Benchmarks.csproj", "{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager.Benchmarks", "Anemonis.VisualStudio.LayoutManager.Benchmarks\Anemonis.VisualStudio.LayoutManager.Benchmarks.csproj", "{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Build", "Solution.Build", "{93562A46-FE6B-4808-86C4-39CC7E8E7AF4}"
 	ProjectSection(SolutionItems) = preProject
-		Community.VisualStudio.LayoutManager.Package.props = Community.VisualStudio.LayoutManager.Package.props
-		Community.VisualStudio.LayoutManager.Package.targets = Community.VisualStudio.LayoutManager.Package.targets
+		Anemonis.VisualStudio.LayoutManager.props = Anemonis.VisualStudio.LayoutManager.props
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection

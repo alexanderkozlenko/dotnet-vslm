@@ -1,13 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsTestable>true</IsTestable>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <DeterministicSourcePaths>false</DeterministicSourcePaths>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Community.VisualStudio.LayoutManager\Community.VisualStudio.LayoutManager.csproj" />
+    <ProjectReference Include="..\Anemonis.VisualStudio.LayoutManager\Anemonis.VisualStudio.LayoutManager.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />

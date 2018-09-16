@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace Community.VisualStudio.LayoutManager.UnitTests.Resources
+namespace Anemonis.VisualStudio.LayoutManager.UnitTests.Resources
 {
     [DebuggerStepThrough]
     internal static class EmbeddedResourceManager
