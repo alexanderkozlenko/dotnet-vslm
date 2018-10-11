@@ -1,29 +1,29 @@
-## Visual Studio 2017 Layout Manager
+# Visual Studio 2017 Layout Manager
 
 A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2017 installation layout packages. 
 
 [![NuGet package](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
 
+## Project Details
+
 ```
 dotnet vslm [command] [layout] 
 ```
 
-Parameter | Default Value | Purpose
---- | --- | ---
-`command` | `--list` | The command to execute
-`layout` | `.\` | The layout directory
+| Parameter | Default Value | Purpose |
+| --- | --- | --- |
+| `command` | `--list` | The command to execute |
+| `layout` | `.\` | The layout directory |
 
-Command | Purpose
---- | ---
-`--list` | Display obsolete packages from the layout
-`--clean` | Remove obsolete packages from the layout
-
-### Characteristics
+| Command | Purpose |
+| --- | --- |
+| `--list` | Display obsolete packages from the layout |
+| `--clean` | Remove obsolete packages from the layout |
 
 - Each directory in the layout that matches the package directory pattern is considered as a package directory.
 - Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
 
-### Usage Examples
+## Usage Examples
 
 ```
 dotnet tool install --global dotnet-vslm
@@ -41,3 +41,8 @@ Working with layout "\\server\vs2017\"
 
 Summary: found 2 obsolete package(s) (1,146,600 bytes)
 ```
+
+## Quicklinks
+
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
