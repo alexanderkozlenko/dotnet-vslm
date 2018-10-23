@@ -3,6 +3,7 @@
 A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2017 installation layout packages. 
 
 [![NuGet package](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm)
 
 ## Project Details
 
