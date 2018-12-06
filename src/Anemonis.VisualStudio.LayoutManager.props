@@ -2,7 +2,7 @@
 <Project>
    <PropertyGroup>
     <VersionPrefix>1.1.7</VersionPrefix>
-    <VersionSuffix>beta</VersionSuffix>
+    <VersionSuffix></VersionSuffix>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>dotnet-vslm</PackageId>
