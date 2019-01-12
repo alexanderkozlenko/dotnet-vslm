@@ -13,7 +13,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Engine
     /// <summary>Represents the layout packages provider.</summary>
     public sealed class LayoutPackagesProvider
     {
-        private static readonly Regex _packageNameRegex = new Regex("^(?<i>[^,]+),version=(?<v>[^,]+)(?:,chip=(?<c>[^,]+))?(?:,language=(?<l>[^,]+))?$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex _packageNameRegex = new Regex("^(?<i>[^,]+),version=(?<v>[^,]+)(?:,chip=(?<c>[^,]+))?(?:,language=(?<l>[^,]+))?$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>Initializes a new instance of the <see cref="LayoutPackagesProvider" /> class.</summary>
         public LayoutPackagesProvider()

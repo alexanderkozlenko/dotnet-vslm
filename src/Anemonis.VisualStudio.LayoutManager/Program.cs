@@ -44,14 +44,14 @@ namespace Anemonis.VisualStudio.LayoutManager
 
                                 totalSize += packageSize;
 
-                                Console.WriteLine(Strings.GetString("command.reveal.package_info"), package, packageSize);
+                                Console.WriteLine(Strings.GetString("command.list.package_info"), package, packageSize);
                             }
                             if (obsoletePackages.Count > 0)
                             {
                                 Console.WriteLine();
                             }
 
-                            Console.WriteLine(Strings.GetString("command.reveal.summary_message"), obsoletePackages.Count, totalSize);
+                            Console.WriteLine(Strings.GetString("command.list.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
                     case "--clean":

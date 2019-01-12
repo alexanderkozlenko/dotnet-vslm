@@ -123,10 +123,10 @@
   <data name="command.clean.summary_message" xml:space="preserve">
     <value>Summary: removed {0} obsolete package(s) ({1:N0} bytes)</value>
   </data>
-  <data name="command.reveal.package_info" xml:space="preserve">
+  <data name="command.list.package_info" xml:space="preserve">
     <value>- "{0}" ({1:N0} bytes)</value>
   </data>
-  <data name="command.reveal.summary_message" xml:space="preserve">
+  <data name="command.list.summary_message" xml:space="preserve">
     <value>Summary: found {0} obsolete package(s) ({1:N0} bytes)</value>
   </data>
   <data name="program.assembly_info" xml:space="preserve">
