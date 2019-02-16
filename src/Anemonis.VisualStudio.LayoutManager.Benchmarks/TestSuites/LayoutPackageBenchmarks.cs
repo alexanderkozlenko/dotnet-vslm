@@ -3,7 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Anemonis.AspNetCore.JsonRpc.Benchmarks.TestSuites
 {
-    public sealed class LayoutPackageBenchmarks
+    public class LayoutPackageBenchmarks
     {
         private static readonly LayoutPackage _package1 = new LayoutPackage("p", "1", "a", "l");
         private static readonly LayoutPackage _package2 = new LayoutPackage("p", "2", "a", "l");
