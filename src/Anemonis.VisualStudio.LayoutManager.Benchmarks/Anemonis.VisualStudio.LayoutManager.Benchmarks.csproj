@@ -10,7 +10,7 @@
     <ProjectReference Include="..\Anemonis.VisualStudio.LayoutManager\Anemonis.VisualStudio.LayoutManager.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.11.3" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 </Project>
