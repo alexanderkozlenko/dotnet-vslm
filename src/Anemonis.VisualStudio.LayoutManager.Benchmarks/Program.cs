@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+
 using Anemonis.AspNetCore.JsonRpc.Benchmarks.TestSuites;
 using Anemonis.VisualStudio.LayoutManager.Benchmarks.Framework;
+
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;

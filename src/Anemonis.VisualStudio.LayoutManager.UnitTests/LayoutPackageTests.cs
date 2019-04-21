@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Anemonis.VisualStudio.LayoutManager.Data;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Anemonis.VisualStudio.LayoutManager.UnitTests

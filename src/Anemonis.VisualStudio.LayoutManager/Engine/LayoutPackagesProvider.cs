@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using Anemonis.VisualStudio.LayoutManager.Data;
+
 using Newtonsoft.Json;
 
 namespace Anemonis.VisualStudio.LayoutManager.Engine

@@ -1,4 +1,5 @@
 ﻿using Anemonis.VisualStudio.LayoutManager.Data;
+
 using BenchmarkDotNet.Attributes;
 
 namespace Anemonis.AspNetCore.JsonRpc.Benchmarks.TestSuites

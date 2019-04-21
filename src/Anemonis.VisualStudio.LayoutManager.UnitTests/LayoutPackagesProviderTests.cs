@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+
 using Anemonis.VisualStudio.LayoutManager.Data;
 using Anemonis.VisualStudio.LayoutManager.Engine;
 using Anemonis.VisualStudio.LayoutManager.UnitTests.Resources;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Anemonis.VisualStudio.LayoutManager.UnitTests
