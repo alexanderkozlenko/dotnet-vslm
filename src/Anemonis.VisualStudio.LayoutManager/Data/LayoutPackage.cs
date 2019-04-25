@@ -3,6 +3,8 @@
 using System;
 using System.Text;
 
+#pragma warning disable CA1812
+
 namespace Anemonis.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents layout package information.</summary>
@@ -66,10 +68,10 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         public override int GetHashCode()
         {
             return HashCode.Combine(
-                _id.ToLowerInvariant(),
-                _version.ToLowerInvariant(),
-                _architecture?.ToLowerInvariant(),
-                _language?.ToLowerInvariant());
+                _id.ToUpperInvariant(),
+                _version.ToUpperInvariant(),
+                _architecture?.ToUpperInvariant(),
+                _language?.ToUpperInvariant());
         }
 
         /// <summary>Returns a string that represents the current <see cref="LayoutPackage" />.</summary>
@@ -126,3 +128,5 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
     }
 }
+
+#pragma warning restore CA1812

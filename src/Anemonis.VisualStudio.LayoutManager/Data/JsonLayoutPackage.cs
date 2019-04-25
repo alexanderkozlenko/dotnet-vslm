@@ -2,6 +2,8 @@
 
 using Newtonsoft.Json;
 
+#pragma warning disable CA1812
+
 namespace Anemonis.VisualStudio.LayoutManager.Data
 {
     /// <summary>Represents layout package information in JSON.</summary>
@@ -45,3 +47,5 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
     }
 }
+
+#pragma warning restore CA1812
