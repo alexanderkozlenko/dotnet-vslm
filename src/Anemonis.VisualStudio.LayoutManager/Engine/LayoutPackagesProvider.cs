@@ -10,6 +10,8 @@ using Anemonis.VisualStudio.LayoutManager.Data;
 
 using Newtonsoft.Json;
 
+#pragma warning disable CA1822
+
 namespace Anemonis.VisualStudio.LayoutManager.Engine
 {
     /// <summary>Represents the layout packages provider.</summary>
@@ -109,3 +111,5 @@ namespace Anemonis.VisualStudio.LayoutManager.Engine
         }
     }
 }
+
+#pragma warning restore CA1822

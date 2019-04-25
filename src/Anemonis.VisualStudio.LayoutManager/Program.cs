@@ -9,6 +9,8 @@ using System.Text;
 using Anemonis.VisualStudio.LayoutManager.Engine;
 using Anemonis.VisualStudio.LayoutManager.Resources;
 
+#pragma warning disable CA1031
+
 namespace Anemonis.VisualStudio.LayoutManager
 {
     public static class Program
@@ -18,12 +20,12 @@ namespace Anemonis.VisualStudio.LayoutManager
             var assembly = typeof(Program).Assembly;
 
             Console.WriteLine(Strings.GetString("program.assembly_info"), assembly.GetCustomAttribute<AssemblyProductAttribute>().Product, assembly.GetName().Version.ToString(3));
-            Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright?.Replace("\u00A9", "(c)"));
+            Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright?.Replace("\u00A9", "(c)", StringComparison.Ordinal));
             Console.WriteLine();
 
             try
             {
-                var command = args.Length > 0 ? args[0].ToLowerInvariant() : "--list";
+                var command = args.Length > 0 ? args[0].ToUpperInvariant() : "--LIST";
                 var layoutPath = args.Length > 1 ? args[1] : Environment.CurrentDirectory;
 
                 var provider = new LayoutPackagesProvider();
@@ -34,7 +36,7 @@ namespace Anemonis.VisualStudio.LayoutManager
 
                 switch (command)
                 {
-                    case "--list":
+                    case "--LIST":
                         {
                             var totalSize = 0L;
 
@@ -55,7 +57,7 @@ namespace Anemonis.VisualStudio.LayoutManager
                             Console.WriteLine(Strings.GetString("command.list.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
-                    case "--clean":
+                    case "--CLEAN":
                         {
                             var totalSize = 0L;
 
@@ -103,3 +105,5 @@ namespace Anemonis.VisualStudio.LayoutManager
         }
     }
 }
+
+#pragma warning restore CA1031
