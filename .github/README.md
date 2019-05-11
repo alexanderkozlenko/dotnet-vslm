@@ -1,8 +1,9 @@
-# Visual Studio 2017 Layout Manager
+# Visual Studio 2019 Layout Manager
 
-A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2017 installation layout packages. 
+A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2019 installation layout packages. 
 
-[![NuGet package](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
+[![NuGet](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
+[![MyGet](https://img.shields.io/myget/alexanderkozlenko/vpre/dotnet-vslm.svg?label=myget&style=flat-square)](https://www.myget.org/feed/alexanderkozlenko/package/nuget/dotnet-vslm)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm)
 
 ## Project Details
@@ -30,12 +31,12 @@ dotnet vslm [command] [layout]
 dotnet tool install --global dotnet-vslm
 ```
 ```
-dotnet vslm --list \\server\vs2017\
+dotnet vslm --list \\server\vs2019\
 ```
 ```
-Visual Studio 2017 Layout Manager version 1.0.0
+Visual Studio 2019 Layout Manager version 1.0.0
 
-Working with layout "\\server\vs2017\"
+Working with layout "\\server\vs2019\"
 
 - "Package1,version=1.0.0,chip=x64" (426,032 bytes)
 - "Package1,version=1.0.0,chip=x86" (720,568 bytes)
