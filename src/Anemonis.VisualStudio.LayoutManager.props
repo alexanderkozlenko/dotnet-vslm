@@ -13,7 +13,6 @@
     <PackageTags><![CDATA[visual studio installation layout]]></PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition="'$(BuildNumber)' != ''">
-    <VersionSuffix Condition="'$(VersionSuffix)' != ''">$(VersionSuffix)-ci-$(BuildNumber)</VersionSuffix>
-    <VersionSuffix Condition="'$(VersionSuffix)' == ''">ci-$(BuildNumber)</VersionSuffix>
+    <VersionSuffix Condition="'$(VersionSuffix)' != ''">$(VersionSuffix)-$(BuildNumber)</VersionSuffix>
   </PropertyGroup>
 </Project>
