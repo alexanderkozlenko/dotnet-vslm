@@ -1,17 +1,19 @@
 ﻿<!-- © Alexander Kozlenko. Licensed under the MIT License. -->
 <Project>
-   <PropertyGroup>
+  <PropertyGroup>
     <VersionPrefix>1.1.8</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
-  </PropertyGroup>
-  <PropertyGroup>
     <PackageId>dotnet-vslm</PackageId>
     <ToolCommandName>$(PackageId)</ToolCommandName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Product><![CDATA[Visual Studio 2017 Layout Manager]]></Product>
+    <Product><![CDATA[Visual Studio 2019 Layout Manager]]></Product>
     <Authors><![CDATA[Alexander Kozlenko]]></Authors>
     <Copyright><![CDATA[© $(Authors). All rights reserved.]]></Copyright>
-    <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2017 installation layout packages]]></Description>
+    <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2019 installation layout packages]]></Description>
     <PackageTags><![CDATA[visual studio installation layout]]></PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BuildNumber)' != ''">
+    <VersionSuffix Condition="'$(VersionSuffix)' == ''">$(BuildNumber)</VersionSuffix>
+    <VersionSuffix Condition="'$(VersionSuffix)' != ''">$(VersionSuffix)-$(BuildNumber)</VersionSuffix>
   </PropertyGroup>
 </Project>
