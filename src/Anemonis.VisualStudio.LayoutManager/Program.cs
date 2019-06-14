@@ -9,7 +9,7 @@ using System.Text;
 using Anemonis.VisualStudio.LayoutManager.Engine;
 using Anemonis.VisualStudio.LayoutManager.Resources;
 
-#pragma warning disable CA1031
+#pragma warning disable CA1031, CA1062
 
 namespace Anemonis.VisualStudio.LayoutManager
 {
@@ -106,4 +106,4 @@ namespace Anemonis.VisualStudio.LayoutManager
     }
 }
 
-#pragma warning restore CA1031
+#pragma warning restore CA1031, CA1062
