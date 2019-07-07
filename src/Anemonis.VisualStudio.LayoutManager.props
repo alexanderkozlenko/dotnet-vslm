@@ -1,8 +1,8 @@
 ﻿<!-- © Alexander Kozlenko. Licensed under the MIT License. -->
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.1.8</VersionPrefix>
-    <VersionSuffix>beta</VersionSuffix>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <PackageId>dotnet-vslm</PackageId>
     <ToolCommandName>$(PackageId)</ToolCommandName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
