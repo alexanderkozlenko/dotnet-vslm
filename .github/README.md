@@ -4,6 +4,7 @@ A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 
 [![NuGet](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
 [![MyGet](https://img.shields.io/myget/alexanderkozlenko/vpre/dotnet-vslm.svg?label=myget&style=flat-square)](https://www.myget.org/feed/alexanderkozlenko/package/nuget/dotnet-vslm)
+[![LGTM](https://img.shields.io/lgtm/alerts/github/alexanderkozlenko/dotnet-vslm.svg?style=flat-square)](https://lgtm.com/projects/g/alexanderkozlenko/dotnet-vslm)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm)
 
 ## Project Details
