@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(SolutionDirectory)\$(MSBuildProjectName).props" />
   <PropertyGroup>
+    <ProjectGuid>{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}</ProjectGuid>
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -8,6 +9,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
     <ApplicationIcon />
     <StartupObject />
+    <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <DebugType>none</DebugType>

@@ -15,5 +15,6 @@
     <HighEntropyVA>true</HighEntropyVA>
     <TieredCompilation>true</TieredCompilation>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 </Project>
