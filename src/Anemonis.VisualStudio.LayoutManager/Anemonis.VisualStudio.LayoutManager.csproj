@@ -11,7 +11,7 @@
     <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <DebugType>none</DebugType>
+    <DebugType Condition="'$(ContinuousIntegrationBuild)' == 'true'">none</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.4" PrivateAssets="All" />
