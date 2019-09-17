@@ -11,8 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.Layou
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Build", "Solution.Build", "{93562A46-FE6B-4808-86C4-39CC7E8E7AF4}"
 	ProjectSection(SolutionItems) = preProject
+		.runsettings = .runsettings
 		Anemonis.VisualStudio.LayoutManager.props = Anemonis.VisualStudio.LayoutManager.props
-		DataCollection.runsettings = DataCollection.runsettings
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection

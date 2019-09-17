@@ -5,7 +5,8 @@ A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 [![NuGet](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
 [![MyGet](https://img.shields.io/myget/alexanderkozlenko/vpre/dotnet-vslm.svg?label=myget&style=flat-square)](https://www.myget.org/feed/alexanderkozlenko/package/nuget/dotnet-vslm)
 
-[![SonarCloud](https://img.shields.io/sonar/violations/dotnet-vslm?format=long&label=sonar&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=dotnet-vslm)
+[![Coverage](https://img.shields.io/sonar/coverage/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/component_measures?id=dotnet-vslm&metric=coverage&view=list)
+[![Violations](https://img.shields.io/sonar/violations/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/project/issues?id=dotnet-vslm&resolved=false)
 
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm)
 
