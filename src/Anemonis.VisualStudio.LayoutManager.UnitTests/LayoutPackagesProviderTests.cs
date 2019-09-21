@@ -39,15 +39,15 @@ namespace Anemonis.VisualStudio.LayoutManager.UnitTests
             var packages = provider.GetCatalogPackages(json);
 
             Assert.IsNotNull(packages);
-            Assert.AreEqual(2, packages.Count);
+            Assert.AreEqual(1, packages.Count);
 
             var package = packages.First();
 
             Assert.IsNotNull(package);
-            Assert.AreEqual("Anaconda2.Exe.x64", package.Id);
-            Assert.AreEqual("5.0.0", package.Version);
-            Assert.AreEqual("x64", package.Architecture);
-            Assert.IsNull(package.Language);
+            Assert.AreEqual("Microsoft.Build", package.Id);
+            Assert.AreEqual("16.2.37902.1937902", package.Version);
+            Assert.AreEqual("neutral", package.Architecture);
+            Assert.AreEqual("neutral", package.Language);
         }
 
         [TestMethod]
@@ -61,15 +61,15 @@ namespace Anemonis.VisualStudio.LayoutManager.UnitTests
             var packages = provider.GetLocalPackages(directories);
 
             Assert.IsNotNull(packages);
-            Assert.AreEqual(2, packages.Count);
+            Assert.AreEqual(1, packages.Count);
 
             var package = packages.First();
 
             Assert.IsNotNull(package);
-            Assert.AreEqual("Anaconda2.Exe.x64", package.Id);
-            Assert.AreEqual("5.0.0", package.Version);
-            Assert.AreEqual("x64", package.Architecture);
-            Assert.IsNull(package.Language);
+            Assert.AreEqual("Microsoft.Build", package.Id);
+            Assert.AreEqual("16.2.37902.1937902", package.Version);
+            Assert.AreEqual("neutral", package.Architecture);
+            Assert.AreEqual("neutral", package.Language);
         }
 
         [TestMethod]
