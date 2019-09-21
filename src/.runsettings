@@ -6,6 +6,7 @@
         <Configuration>
           <Format>opencover</Format>
           <SingleHit>false</SingleHit>
+          <Exclude>[*]*.Program</Exclude>
         </Configuration>
       </DataCollector>
     </DataCollectors>
