@@ -1,12 +1,10 @@
-﻿<!-- © Alexander Kozlenko. Licensed under the MIT License. -->
+<!-- © Alexander Kozlenko. Licensed under the MIT License. -->
 <Project>
   <Target Name="InitializePackageUrls"
           DependsOnTargets="$(SourceLinkUrlInitializerTargets)"
-          BeforeTargets="GenerateNuspec"
-          Condition="'$(IsPackable)' == 'true'">
+          BeforeTargets="GenerateNuspec">
     <PropertyGroup>
-      <PackageProjectUrl>%(SourceRoot.RepositoryUrl)</PackageProjectUrl>
-      <PackageProjectUrl>$(PackageProjectUrl.Replace('.git', ''))</PackageProjectUrl>
+      <PackageProjectUrl>$(RepositoryUrl.Replace('.git', ''))</PackageProjectUrl>
     </PropertyGroup>
   </Target>
   <Target Name="InitializeTestProperties"
