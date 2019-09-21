@@ -86,6 +86,10 @@ namespace Anemonis.VisualStudio.LayoutManager.UnitTests
             Assert.IsFalse(
                 new LayoutPackage("package", "1.0.0", null, null)
                     .Equals(
+                (LayoutPackage)null));
+            Assert.IsFalse(
+                new LayoutPackage("package", "1.0.0", null, null)
+                    .Equals(
                 (object)null));
             Assert.IsTrue(
                 new LayoutPackage("package", "1.0.0", null, null)
