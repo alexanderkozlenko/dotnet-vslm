@@ -21,20 +21,18 @@ namespace Anemonis.VisualStudio.LayoutManager.UnitTests.Resources
                 throw new ArgumentNullException(nameof(name));
             }
 
-            using (var resourceStream = _assembly.GetManifestResourceStream(_assemblyName + "." + name))
+            using var resourceStream = _assembly.GetManifestResourceStream(_assemblyName + "." + name);
+
+            if (resourceStream == null)
             {
-                if (resourceStream == null)
-                {
-                    throw new InvalidOperationException($"The resource \"{name}\" was not found");
-                }
-
-                using (var bufferStream = new MemoryStream((int)resourceStream.Length))
-                {
-                    resourceStream.CopyTo(bufferStream);
-
-                    return Encoding.UTF8.GetString(bufferStream.ToArray());
-                }
+                throw new InvalidOperationException($"The resource \"{name}\" was not found");
             }
+
+            using var bufferStream = new MemoryStream((int)resourceStream.Length);
+
+            resourceStream.CopyTo(bufferStream);
+
+            return Encoding.UTF8.GetString(bufferStream.ToArray());
         }
     }
 }

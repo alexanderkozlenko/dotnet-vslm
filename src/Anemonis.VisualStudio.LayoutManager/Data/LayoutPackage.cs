@@ -128,5 +128,3 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
     }
 }
-
-#pragma warning restore CA1812
