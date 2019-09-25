@@ -111,5 +111,3 @@ namespace Anemonis.VisualStudio.LayoutManager.Engine
         }
     }
 }
-
-#pragma warning restore CA1822

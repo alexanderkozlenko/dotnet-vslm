@@ -105,5 +105,3 @@ namespace Anemonis.VisualStudio.LayoutManager
         }
     }
 }
-
-#pragma warning restore CA1031, CA1062
