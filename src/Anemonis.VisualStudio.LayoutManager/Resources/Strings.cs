@@ -13,10 +13,10 @@ namespace Anemonis.VisualStudio.LayoutManager.Resources
 
         /// <summary>Returns the value of the specified string.</summary>
         /// <param name="name">The name of the string to retrieve.</param>
-        /// <returns>The value of the resource localized for the caller's current UI culture, or null if name cannot be found in a resource set.</returns>
+        /// <returns>The value of the resource localized for the caller's current UI culture, or <see langword="null" /> if name cannot be found in a resource set.</returns>
         public static string GetString(string name)
         {
-            return _resourceManager.GetString(name, CultureInfo.InvariantCulture);
+            return _resourceManager.GetString(name, CultureInfo.CurrentCulture);
         }
     }
 }
