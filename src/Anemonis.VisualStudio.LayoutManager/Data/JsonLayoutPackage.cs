@@ -1,6 +1,6 @@
 ﻿// © Alexander Kozlenko. Licensed under the MIT License.
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 #pragma warning disable CA1812
 
@@ -15,7 +15,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets the package identifier.</summary>
-        [JsonProperty("id", Required = Required.Always)]
+        [JsonPropertyName("id")]
         public string Id
         {
             get;
@@ -23,7 +23,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets the package version.</summary>
-        [JsonProperty("version", Required = Required.Always)]
+        [JsonPropertyName("version")]
         public string Version
         {
             get;
@@ -31,7 +31,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets the package architecture code.</summary>
-        [JsonProperty("chip")]
+        [JsonPropertyName("chip")]
         public string Architecture
         {
             get;
@@ -39,7 +39,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets the package language code.</summary>
-        [JsonProperty("language")]
+        [JsonPropertyName("language")]
         public string Language
         {
             get;
