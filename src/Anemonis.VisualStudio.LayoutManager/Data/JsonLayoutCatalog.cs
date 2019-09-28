@@ -1,6 +1,6 @@
 ﻿// © Alexander Kozlenko. Licensed under the MIT License.
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 #pragma warning disable CA1812
 
@@ -15,7 +15,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
         }
 
         /// <summary>Gets or sets the product packages.</summary>
-        [JsonProperty("packages", Required = Required.Always)]
+        [JsonPropertyName("packages")]
         public JsonLayoutPackage[] Packages
         {
             get;

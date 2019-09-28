@@ -4,11 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 using Anemonis.VisualStudio.LayoutManager.Data;
-
-using Newtonsoft.Json;
 
 #pragma warning disable CA1822
 
@@ -35,7 +34,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Engine
                 throw new ArgumentNullException(nameof(json));
             }
 
-            var catalog = JsonConvert.DeserializeObject<JsonLayoutCatalog>(json);
+            var catalog = JsonSerializer.Deserialize<JsonLayoutCatalog>(json);
             var packages = new HashSet<LayoutPackage>(catalog.Packages.Length);
 
             for (var i = 0; i < catalog.Packages.Length; i++)
