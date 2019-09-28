@@ -3,7 +3,7 @@
 namespace System.IO
 {
     /// <summary>Defines extension methods for the <see cref="DirectoryInfo" /> type.</summary>
-    internal static class DirectoryInfoExtensions
+    public static class DirectoryInfoExtensions
     {
         /// <summary>Gets directory size in bytes.</summary>
         /// <param name="directoryInfo">The <see cref="DirectoryInfo" /> instance to get the size for.</param>
