@@ -2,13 +2,11 @@
 
 A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2019 installation layout packages. 
 
-[![NuGet](https://img.shields.io/nuget/v/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm)
-[![MyGet](https://img.shields.io/myget/alexanderkozlenko/vpre/dotnet-vslm.svg?label=myget&style=flat-square)](https://www.myget.org/feed/alexanderkozlenko/package/nuget/dotnet-vslm)
-
-[![Coverage](https://img.shields.io/sonar/coverage/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/component_measures?id=dotnet-vslm&metric=coverage&view=list)
-[![Violations](https://img.shields.io/sonar/violations/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/project/issues?id=dotnet-vslm&resolved=false)
-
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm)
+| [![](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm) | Release | Current |
+|---|---|---|
+| Artifacts | [![](https://img.shields.io/nuget/vpre/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm) | [![](https://img.shields.io/myget/alexanderkozlenko/vpre/dotnet-vslm.svg?label=myget&style=flat-square)](https://www.myget.org/feed/alexanderkozlenko/package/nuget/dotnet-vslm) |
+| Code Health | | [![](https://img.shields.io/sonar/coverage/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/component_measures?id=dotnet-vslm&metric=coverage&view=list) [![](https://img.shields.io/sonar/violations/dotnet-vslm?format=long&server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/project/issues?id=dotnet-vslm&resolved=false) |
+| Build Status | | [![](https://img.shields.io/azure-devops/build/alexanderkozlenko/github-pipelines/7?label=master&style=flat-square)](https://dev.azure.com/alexanderkozlenko/github-pipelines/_build?definitionId=7&_a=summary) |
 
 ## Project Details
 
