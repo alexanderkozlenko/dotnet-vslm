@@ -1,15 +1,17 @@
 ﻿// © Alexander Kozlenko. Licensed under the MIT License.
 
 using System;
-using System.Globalization;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.IO;
 using System.Reflection;
 using System.Text;
 
+using Anemonis.VisualStudio.LayoutManager.Data;
 using Anemonis.VisualStudio.LayoutManager.Engine;
 using Anemonis.VisualStudio.LayoutManager.Resources;
 
-#pragma warning disable CA1031, CA1062
+#pragma warning disable CA1031
 
 namespace Anemonis.VisualStudio.LayoutManager
 {
@@ -23,20 +25,53 @@ namespace Anemonis.VisualStudio.LayoutManager
             Console.WriteLine(assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright?.Replace("\u00A9", "(c)", StringComparison.Ordinal));
             Console.WriteLine();
 
+            var pathArgument = new Argument("path")
+            {
+                ArgumentType = typeof(string),
+                Description = Strings.GetString("argument.path.description")
+            };
+
+            pathArgument.SetDefaultValue(Environment.CurrentDirectory);
+
+            var commandList = new Command("list")
+            {
+                Description = Strings.GetString("command.list.description")
+            };
+
+            commandList.AddArgument(pathArgument);
+            commandList.Handler = CommandHandler.Create((Action<string>)((path) => ExecuteAction(ApplicationCommand.List, path)));
+
+            var commandClean = new Command("clean")
+            {
+                Description = Strings.GetString("command.clean.description")
+            };
+
+            commandClean.AddArgument(pathArgument);
+            commandClean.Handler = CommandHandler.Create((Action<string>)((path) => ExecuteAction(ApplicationCommand.Clean, path)));
+
+            var commandRoot = new RootCommand();
+
+            commandRoot.AddCommand(commandList);
+            commandRoot.AddCommand(commandClean);
+
+            commandRoot.Handler = CommandHandler.Create(() => ExecuteAction(ApplicationCommand.List, (string)pathArgument.GetDefaultValue()));
+
+            commandRoot.Invoke(args);
+        }
+
+        private static void ExecuteAction(ApplicationCommand action, string layoutPath)
+        {
             try
             {
-                var command = args.Length > 0 ? args[0].ToUpperInvariant() : "--LIST";
-                var layoutPath = args.Length > 1 ? args[1] : Environment.CurrentDirectory;
-
                 var provider = new LayoutPackagesProvider();
 
                 var catalogPackages = provider.GetCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8));
                 var localPackages = provider.GetLocalPackages(Directory.GetDirectories(layoutPath));
                 var obsoletePackages = provider.GetObsoletePackages(catalogPackages, localPackages);
 
-                switch (command)
+                switch (action)
                 {
-                    case "--LIST":
+                    case ApplicationCommand.List:
                         {
                             var totalSize = 0L;
 
@@ -57,7 +92,7 @@ namespace Anemonis.VisualStudio.LayoutManager
                             Console.WriteLine(Strings.GetString("command.list.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
-                    case "--CLEAN":
+                    case ApplicationCommand.Clean:
                         {
                             var totalSize = 0L;
 
@@ -79,10 +114,6 @@ namespace Anemonis.VisualStudio.LayoutManager
                             Console.WriteLine(Strings.GetString("command.clean.summary_message"), obsoletePackages.Count, totalSize);
                         }
                         break;
-                    default:
-                        {
-                            throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Strings.GetString("program.invalid_parameter"), "command"));
-                        }
                 }
             }
             catch (Exception ex)
@@ -94,13 +125,6 @@ namespace Anemonis.VisualStudio.LayoutManager
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Error.WriteLine(Strings.GetString("program.error_message"), ex.Message);
                 Console.ForegroundColor = foregroundColor;
-                Console.WriteLine();
-                Console.WriteLine(Strings.GetString("program.usage_message"));
-                Console.WriteLine();
-                Console.WriteLine(Strings.GetString("program.usage_commands"));
-                Console.WriteLine();
-                Console.WriteLine(Strings.GetString("program.usage_command_list"));
-                Console.WriteLine(Strings.GetString("program.usage_command_clean"));
             }
         }
     }

@@ -1,6 +1,6 @@
 # Visual Studio 2019 Layout Manager
 
-A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2019 installation layout packages. 
+A [.NET Core Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) for working with obsolete Visual Studio 2019 installation layout packages. 
 
 | [![](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm) | Release | Current |
 |---|---|---|
@@ -10,30 +10,34 @@ A .NET Core [Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 
 ## Project Details
 
+- Each directory in the layout that matches the package directory pattern is considered as a package directory.
+- Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
+
 ```
 dotnet vslm [command] [layout] 
 ```
 
+Parameters:
+
 | Parameter | Default Value | Purpose |
 | --- | --- | --- |
-| `command` | `--list` | The command to execute |
-| `layout` | `.\` | The layout directory |
+| `command` | `list` | Application command to execute |
+| `path` | `.\` | Path to the installation layout |
+
+Commands:
 
 | Command | Purpose |
 | --- | --- |
-| `--list` | Display obsolete packages from the layout |
-| `--clean` | Remove obsolete packages from the layout |
-
-- Each directory in the layout that matches the package directory pattern is considered as a package directory.
-- Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
+| `list` | List obsolete packages from the layout |
+| `clean` | Remove obsolete packages from the layout |
 
 ## Usage Examples
 
 ```
-dotnet tool install --global dotnet-vslm
+dotnet tool install -g dotnet-vslm
 ```
 ```
-dotnet vslm --list \\server\vs2019\
+dotnet vslm list \\server\vs2019\
 ```
 ```
 Visual Studio 2019 Layout Manager version 1.0.0

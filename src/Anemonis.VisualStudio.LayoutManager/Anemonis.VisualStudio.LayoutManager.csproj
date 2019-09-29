@@ -6,6 +6,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <AssemblyName>vslm</AssemblyName>
     <ApplicationIcon />
     <StartupObject />
     <SonarQubeExclude>false</SonarQubeExclude>
@@ -17,5 +18,6 @@
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.4" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.4" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19367-01" PrivateAssets="All" />
+    <PackageReference Include="System.CommandLine.Experimental" Version="0.3.0-alpha.19405.1" />
   </ItemGroup>
 </Project>
