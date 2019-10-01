@@ -14,7 +14,7 @@ A [.NET Core Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 - Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
 
 ```
-dotnet vslm [command] [layout] 
+dotnet vslm [command] [path] 
 ```
 
 Parameters:
@@ -41,8 +41,6 @@ dotnet vslm list \\server\vs2019\
 ```
 ```
 Visual Studio 2019 Layout Manager version 1.0.0
-
-Working with layout "\\server\vs2019\"
 
 - "Package1,version=1.0.0,chip=x64" (426,032 bytes)
 - "Package1,version=1.0.0,chip=x86" (720,568 bytes)
