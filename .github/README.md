@@ -14,7 +14,7 @@ A [.NET Core Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 - Each local package which is not listed in the `Catalog.json` file is considered as obsolete package.
 
 ```
-dotnet vslm [command] [path] 
+dotnet vslm [command [path]]
 ```
 
 Parameters:
