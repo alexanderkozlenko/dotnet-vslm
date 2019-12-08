@@ -24,9 +24,10 @@
   <PropertyGroup Condition="'$(IsPackageProject)' == 'true'">
     <HighEntropyVA>true</HighEntropyVA>
     <NoWin32Manifest>true</NoWin32Manifest>
+    <RollForward>LatestMajor</RollForward>
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSymbols>false</IncludeSymbols>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
