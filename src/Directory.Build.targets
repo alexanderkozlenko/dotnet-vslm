@@ -26,18 +26,21 @@
   <PropertyGroup Condition="'$(IsPackageProject)' == 'true'">
     <IsPackable>true</IsPackable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition="'$(IsPackageProject)' == 'true' and '$(PackAsTool)' == 'true'">
+    <IsToolingProject>true</IsToolingProject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsToolingProject)' == 'true'">
     <HighEntropyVA>true</HighEntropyVA>
     <RollForward>LatestMajor</RollForward>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+    <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(IsPackageProject)' == 'true' and '$(PackAsTool)' == 'true' and '$(Configuration)' == 'Release'">
+  <PropertyGroup Condition="'$(IsToolingProject)' == 'true' and '$(Configuration)' == 'Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
-  <!-- Project: Properties (Development) -->
-  <PropertyGroup Condition="'$(IsDevelopmentProject)' == 'true'">
+  <!-- Project: Properties (Testing) -->
+  <PropertyGroup Condition="'$(IsTestingProject)' == 'true'">
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWin32Manifest>true</NoWin32Manifest>
     <DeterministicSourcePaths>false</DeterministicSourcePaths>
