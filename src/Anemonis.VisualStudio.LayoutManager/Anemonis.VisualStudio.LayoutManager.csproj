@@ -6,6 +6,7 @@
     <AssemblyName>vslm</AssemblyName>
     <ApplicationIcon />
     <StartupObject />
+    <PackAsTool>true</PackAsTool>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8" />
