@@ -1,5 +1,4 @@
-﻿<!-- © Alexander Kozlenko. Licensed under the MIT License. -->
-<Project>
+﻿<Project>
   <PropertyGroup>
     <VersionPrefix>1.4.0</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
@@ -11,8 +10,5 @@
     <Copyright><![CDATA[© $(Authors). All rights reserved.]]></Copyright>
     <Description><![CDATA[A .NET Core Global Tool for working with obsolete Visual Studio 2019 installation layout packages]]></Description>
     <PackageTags><![CDATA[visual studio installation layout]]></PackageTags>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(BuildNumber)' != ''">
-    <VersionSuffix Condition="'$(VersionSuffix)' != ''">$(VersionSuffix)-$(BuildNumber)</VersionSuffix>
   </PropertyGroup>
 </Project>

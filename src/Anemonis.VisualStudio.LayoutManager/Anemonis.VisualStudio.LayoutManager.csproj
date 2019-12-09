@@ -1,23 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <IsPackable>true</IsPackable>
-    <PackAsTool>true</PackAsTool>
+    <IsPackageProject>true</IsPackageProject>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
-    <NoWin32Manifest>true</NoWin32Manifest>
     <AssemblyName>vslm</AssemblyName>
     <ApplicationIcon />
     <StartupObject />
-    <SonarQubeExclude>false</SonarQubeExclude>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <DebugType Condition="'$(ContinuousIntegrationBuild)' == 'true'">none</DebugType>
+    <PackAsTool>true</PackAsTool>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.8" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.8" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" />
     <PackageReference Include="System.CommandLine.Experimental" Version="0.3.0-alpha.19577.1" />
   </ItemGroup>
-  <Import Project="**\*.props" />
 </Project>
