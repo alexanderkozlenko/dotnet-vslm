@@ -36,7 +36,7 @@
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
     <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(IsToolingProject)' == 'true' and '$(Configuration)' == 'Release'">
+  <PropertyGroup Condition="'$(IsToolingProject)' == 'true' and '$(Configuration)' == 'Release' and '$(ContinuousIntegrationBuild)' == 'true'">
     <DebugType>none</DebugType>
   </PropertyGroup>
   <!-- Project: Properties (Testing) -->
