@@ -38,9 +38,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
             _language = language;
         }
 
-        /// <summary>Indicates whether the current <see cref="LayoutPackage" /> is equal to another <see cref="LayoutPackage" />.</summary>
-        /// <param name="other">A <see cref="LayoutPackage" /> to compare with this <see cref="LayoutPackage" />.</param>
-        /// <returns><see langword="true" /> if the current <see cref="LayoutPackage" /> is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        /// <inheritdoc />
         public bool Equals(LayoutPackage other)
         {
             if (other == null)
@@ -55,16 +53,13 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
                 (string.Compare(_language, other._language, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
-        /// <summary>Indicates whether the current <see cref="LayoutPackage" /> is equal to another object.</summary>
-        /// <param name="obj">An object to compare with this <see cref="LayoutPackage" />.</param>
-        /// <returns><see langword="true" /> if the current <see cref="LayoutPackage" /> is equal to the <paramref name="obj" /> parameter; otherwise, <see langword="false" />.</returns>
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             return (obj is LayoutPackage other) && Equals(other);
         }
 
-        /// <summary>Serves as the default hash function.</summary>
-        /// <returns>A hash code for the current <see cref="LayoutPackage" />.</returns>
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return HashCode.Combine(
@@ -74,8 +69,7 @@ namespace Anemonis.VisualStudio.LayoutManager.Data
                 _language?.ToUpperInvariant());
         }
 
-        /// <summary>Returns a string that represents the current <see cref="LayoutPackage" />.</summary>
-        /// <returns>A string that represents the current <see cref="LayoutPackage" />.</returns>
+        /// <inheritdoc />
         public override string ToString()
         {
             var builder = new StringBuilder(_id);
