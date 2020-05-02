@@ -1,7 +1,7 @@
 ﻿<Project>
   <PropertyGroup>
     <VersionPrefix>1.4.0</VersionPrefix>
-    <VersionSuffix>beta</VersionSuffix>
+    <VersionSuffix></VersionSuffix>
     <PackageId>dotnet-vslm</PackageId>
     <ToolCommandName>$(PackageId)</ToolCommandName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
