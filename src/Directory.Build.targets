@@ -2,16 +2,12 @@
 <Project>
   <!-- Project: Properties -->
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>4.7</LangVersion>
     <NoWin32Manifest>true</NoWin32Manifest>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IsPackable>false</IsPackable>
-    <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Update="Microsoft.*.Analyzers">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Update="Microsoft.SourceLink.*">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
@@ -34,7 +30,6 @@
     <HighEntropyVA>true</HighEntropyVA>
     <RollForward>LatestMajor</RollForward>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
-    <SonarQubeExclude>false</SonarQubeExclude>
   </PropertyGroup>
   <PropertyGroup Condition="'$(IsToolingProject)' == 'true' and '$(Configuration)' == 'Release' and '$(ContinuousIntegrationBuild)' == 'true'">
     <DebugType>none</DebugType>
