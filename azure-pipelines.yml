@@ -19,7 +19,7 @@ stages:
       inputs:
         command: custom
         custom: build
-        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:ContinuousIntegrationBuild=true -p:BuildNumber=$(Build.BuildNumber) -p:UseSolution=true'
+        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:ContinuousIntegrationBuild=true -p:BuildNumber=$(Build.BuildNumber)'
     - task: DotNetCoreCLI@2
       displayName: 'dotnet.pack'
       inputs:
@@ -38,52 +38,28 @@ stages:
   - job: Release
     steps:
     - task: UseDotNet@2
-      displayName: 'dotnet.use.sonar'
-      inputs:
-        packageType: runtime
-        version: 2.x
-    - task: UseDotNet@2
       displayName: 'dotnet.use.sdk'
       inputs:
         useGlobalJson: true
         workingDirectory: '$(Build.SourcesDirectory)'
-    - task: SonarCloudPrepare@1
-      displayName: 'sonar.prepare'
-      inputs:
-        SonarCloud: '$(System.ServiceConnection.Sonar)'
-        organization: '$(Sonar.Organization)'
-        projectKey: '$(Sonar.ProjectKey)'
-        scannerMode: 'MSBuild'
-        extraProperties: |
-          sonar.log.level=$(Sonar.Logging.Level)
-          sonar.scm.disabled=true
-          sonar.cs.roslyn.ignoreIssues=true
-          sonar.cs.vstest.reportsPaths=$(Common.TestResultsDirectory)/**/*.trx
-          sonar.cs.opencover.reportsPaths=$(Common.TestResultsDirectory)/**/*.opencover.xml
     - task: DotNetCoreCLI@2
       displayName: 'dotnet.build'
       inputs:
         command: custom
         custom: build
-        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:BuildNumber=$(Build.BuildNumber) -p:UseSolution=true -p:CopyLocalLockFileAssemblies=true'
+        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:BuildNumber=$(Build.BuildNumber) -p:CopyLocalLockFileAssemblies=true'
     - task: DotNetCoreCLI@2
       displayName: 'dotnet.test'
       inputs:
         command: custom
         custom: test
-        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:BuildNumber=$(Build.BuildNumber) --no-build --filter TestCategory!=System -s $(Build.SourcesDirectory)/src/.runsettings -l trx -r $(Common.TestResultsDirectory)'
+        arguments: '$(Build.ProjectPath) -v $(DOTNET_VERBOSITY) -c Release -p:BuildNumber=$(Build.BuildNumber) --no-build --filter TestCategory!=System -l trx -r $(Common.TestResultsDirectory)'
     - task: PublishTestResults@2
       displayName: 'report.publish'
       inputs:
         testRunner: VSTest
         testResultsFiles: '**/*.trx'
         searchFolder: '$(Common.TestResultsDirectory)'
-    - task: SonarCloudAnalyze@1
-      displayName: 'sonar.analyze'
-      condition: and(succeeded(), not(canceled()))
-    - task: SonarCloudPublish@1
-      displayName: 'sonar.publish'
-      condition: and(succeeded(), not(canceled()), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 - stage: Push
   dependsOn:
   - Pack

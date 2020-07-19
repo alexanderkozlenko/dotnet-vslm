@@ -8,4 +8,7 @@
     <BaseIntermediateOutputPath>$([MSBuild]::NormalizeDirectory($(MSBuildThisFileDirectory)..))obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <BaseOutputPath>$([MSBuild]::NormalizeDirectory($(MSBuildThisFileDirectory)..))bin\$(MSBuildProjectName)</BaseOutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="**\*.props" />
+  </ItemGroup>
 </Project>

@@ -1,17 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager", "Anemonis.VisualStudio.LayoutManager\Anemonis.VisualStudio.LayoutManager.csproj", "{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Anemonis.VisualStudio.LayoutManager", "Anemonis.VisualStudio.LayoutManager\Anemonis.VisualStudio.LayoutManager.fsproj", "{E27AB52C-279C-4D6F-82F7-FFD118A825D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager.UnitTests", "Anemonis.VisualStudio.LayoutManager.UnitTests\Anemonis.VisualStudio.LayoutManager.UnitTests.csproj", "{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Anemonis.VisualStudio.LayoutManager.UnitTests", "Anemonis.VisualStudio.LayoutManager.UnitTests\Anemonis.VisualStudio.LayoutManager.UnitTests.fsproj", "{54089315-54E3-4D93-A751-D8D4BF4D73FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anemonis.VisualStudio.LayoutManager.Benchmarks", "Anemonis.VisualStudio.LayoutManager.Benchmarks\Anemonis.VisualStudio.LayoutManager.Benchmarks.csproj", "{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Build", "Solution.Build", "{93562A46-FE6B-4808-86C4-39CC7E8E7AF4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Build", "Solution.Build", "{AA5A2636-C837-4979-A6B2-54150C27F67E}"
 	ProjectSection(SolutionItems) = preProject
-		.runsettings = .runsettings
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
@@ -22,23 +19,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1EEA8B0-9B1E-4B97-9114-DB542938F27F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15EFBDBB-C3C3-4AE4-B5FC-B8D76A4B2DB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3A2D26D-F4F0-4337-8370-5A2D03EC5614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27AB52C-279C-4D6F-82F7-FFD118A825D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27AB52C-279C-4D6F-82F7-FFD118A825D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27AB52C-279C-4D6F-82F7-FFD118A825D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27AB52C-279C-4D6F-82F7-FFD118A825D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54089315-54E3-4D93-A751-D8D4BF4D73FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54089315-54E3-4D93-A751-D8D4BF4D73FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54089315-54E3-4D93-A751-D8D4BF4D73FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54089315-54E3-4D93-A751-D8D4BF4D73FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {56F53FC2-A87B-4B71-9B78-433BB615459A}
+		SolutionGuid = {743A2202-B50D-4D0F-A105-C690C509F10A}
 	EndGlobalSection
 EndGlobal
