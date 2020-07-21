@@ -64,7 +64,7 @@ stages:
   dependsOn:
   - Pack
   - Test
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SkipPush'], ''))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.SkipPush'], ''))
   jobs:
   - job: Release
     steps:
