@@ -5,7 +5,7 @@ A [.NET Core Global Tool](https://docs.microsoft.com/en-us/dotnet/core/tools/glo
 | [![gitter.im](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/anemonis/dotnet-vslm) | Release | Current |
 |---|---|---|
 | Artifacts | [![nuget.org](https://img.shields.io/nuget/vpre/dotnet-vslm.svg?style=flat-square)](https://www.nuget.org/packages/dotnet-vslm) | [![feedz.io](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Ff.feedz.io%2Falexander-kozlenko%2Fanemonis%2Fshield%2Fdotnet-vslm%2Flatest&label=feedz&logo=_&color=lightgrey&style=flat-square)](https://f.feedz.io/alexander-kozlenko/anemonis/packages/dotnet-vslm/latest/download) |
-| Build Status | | [![dev.azure.com](https://img.shields.io/azure-devops/build/alexanderkozlenko/github-pipelines/7?label=master&style=flat-square)](https://dev.azure.com/alexanderkozlenko/github-pipelines/_build?definitionId=7&_a=summary) |
+| Build Status | | [![dev.azure.com](https://img.shields.io/azure-devops/build/alexanderkozlenko/github-pipelines/7?label=main&style=flat-square)](https://dev.azure.com/alexanderkozlenko/github-pipelines/_build?definitionId=7&_a=summary) |
 
 ## Project Details
 
