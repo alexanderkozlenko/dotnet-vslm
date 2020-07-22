@@ -14,8 +14,7 @@ open Anemonis.VisualStudio.LayoutManager.Engine
 open Anemonis.VisualStudio.LayoutManager.Resources
 
 module public Program =
-
-    let private ExecuteAction(action : ApplicationCommand, layoutPath : string) =
+    let private ExecuteAction(action : ApplicationCommand, layoutPath : string) : unit =
         try
             let provider = new LayoutPackagesProvider()
             let catalogPackages = provider.GetCatalogPackages(File.ReadAllText(Path.Combine(layoutPath, "Catalog.json"), Encoding.UTF8))
@@ -66,8 +65,7 @@ module public Program =
                 Console.ForegroundColor <- foregroundColor
 
     [<EntryPoint>]
-    let public Main(args: string[]) =
-
+    let public Main(args: string[]) : int32 =
         let entryAssembly = Assembly.GetEntryAssembly()
         let attributeProduct = entryAssembly.GetCustomAttribute<AssemblyProductAttribute>()
         let attributeCopyright = entryAssembly.GetCustomAttribute<AssemblyCopyrightAttribute>()
