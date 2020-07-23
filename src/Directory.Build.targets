@@ -20,6 +20,7 @@
   </PropertyGroup>
   <!-- Project: Properties (Packaging) -->
   <PropertyGroup Condition="'$(IsPackageProject)' == 'true'">
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <IsPackable>true</IsPackable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
