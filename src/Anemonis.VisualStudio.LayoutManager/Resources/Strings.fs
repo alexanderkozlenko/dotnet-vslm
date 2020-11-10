@@ -9,9 +9,9 @@ open System.Resources
 [<AbstractClass>]
 type internal Strings() =
     class
-        static member private _resourceManager : ResourceManager =
+        static member private s_resourceManager : ResourceManager =
             new ResourceManager(typeof<Strings>.Namespace + "." + typeof<Strings>.Name, typeof<Strings>.Assembly)
 
         static member public GetString(name: string) : string =
-            Strings._resourceManager.GetString(name, CultureInfo.CurrentCulture)
+            Strings.s_resourceManager.GetString(name, CultureInfo.CurrentCulture)
     end

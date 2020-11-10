@@ -11,9 +11,9 @@ type public LayoutPackage(id : string, version : string, architecture : string, 
     class
         do
             if id = null then
-                raise (ArgumentNullException("id"))
+                raise (ArgumentNullException(nameof(id)))
             if version = null then
-                raise (ArgumentNullException("version"))
+                raise (ArgumentNullException(nameof(version)))
 
         member private _._id : string = id
         member private _._version : string = version
