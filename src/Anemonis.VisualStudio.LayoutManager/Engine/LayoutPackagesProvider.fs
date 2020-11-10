@@ -13,12 +13,12 @@ open Anemonis.VisualStudio.LayoutManager.Data
 [<Sealed>]
 type public LayoutPackagesProvider() =
     class
-        static member private _packageNameRegex : Regex =
+        static member private s_packageNameRegex : Regex =
             new Regex("^(?<i>[^,]+),version=(?<v>[^,]+)(?:,chip=(?<c>[^,]+))?(?:,language=(?<l>[^,]+))?$", RegexOptions.IgnoreCase ||| RegexOptions.Compiled)
 
         member public this.GetCatalogPackages(json : string) : IReadOnlyCollection<LayoutPackage> =
             if json = null then
-                raise (ArgumentNullException("json"))
+                raise (ArgumentNullException(nameof(json)))
 
             let catalog = JsonSerializer.Deserialize<JsonLayoutCatalog>(json)
 
@@ -29,13 +29,13 @@ type public LayoutPackagesProvider() =
 
         member public this.GetLocalPackages(directories : IReadOnlyList<string>) : IReadOnlyCollection<LayoutPackage> =
             if directories = null then
-                raise (ArgumentNullException("directories"))
+                raise (ArgumentNullException(nameof(directories)))
 
             let getValue (g : Group) : string = (if g.Success then g.Value else null)
 
             directories
             |> Seq.map Path.GetFileName
-            |> Seq.map LayoutPackagesProvider._packageNameRegex.Match
+            |> Seq.map LayoutPackagesProvider.s_packageNameRegex.Match
             |> Seq.where (fun x -> x.Success)
             |> Seq.map (fun x ->
                 new LayoutPackage(
@@ -48,9 +48,9 @@ type public LayoutPackagesProvider() =
 
         member public this.GetObsoletePackages(catalogPackages : IReadOnlyCollection<LayoutPackage>, localPackages : IReadOnlyCollection<LayoutPackage>) : IReadOnlyCollection<LayoutPackage> =
             if catalogPackages = null then
-                raise (ArgumentNullException("catalogPackages"))
+                raise (ArgumentNullException(nameof(catalogPackages)))
             if localPackages = null then
-                raise (ArgumentNullException("localPackages"))
+                raise (ArgumentNullException(nameof(localPackages)))
 
             localPackages
             |> Seq.except catalogPackages

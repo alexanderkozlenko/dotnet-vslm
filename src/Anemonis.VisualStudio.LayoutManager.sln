@@ -9,6 +9,7 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Anemonis.VisualStudio.Layou
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Build", "Solution.Build", "{AA5A2636-C837-4979-A6B2-54150C27F67E}"
 	ProjectSection(SolutionItems) = preProject
+		.globalconfig = .globalconfig
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
